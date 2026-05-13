@@ -1,0 +1,775 @@
+﻿
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/assets/fav.jpg" type="image/jpeg">
+      <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <title>About | WordCraft Freelance Copywriter</title>
+
+<script src="tailwind.js"></script>    <style>
+  /* ================================
+   🟣 PURPLE + SLATE DESIGN SYSTEM
+================================ */
+
+/* ---------- LIGHT MODE ---------- */
+:root,
+html[data-theme='light'] {
+
+  /* Backgrounds */
+  --color-background: #F8FAFC;        /* soft neutral */
+  --color-surface: #FFFFFF;           /* cards */
+  --color-elevated: #F1F5F9;          /* sections */
+
+  /* Text */
+  --color-primary-text: #0F172A;      /* slate-900 */
+  --color-secondary-text: #475569;
+
+  /* Brand */
+  --color-accent: #1E293B;            /* slate dark */
+  --color-accent-light: #7C3AED;      /* purple */
+
+  /* UI */
+  --color-border: #E2E8F0;
+  --color-hover: #EEF2F7;
+
+  /* Footer */
+  --color-footer-bg: #1E293B;
+  --color-footer-text: #E2E8F0;
+}
+
+
+/* ---------- DARK MODE ---------- */
+html[data-theme='dark'] {
+
+  /* Backgrounds */
+  --color-background: #0B1120;        /* deep slate */
+  --color-surface: #0F172A;           /* cards */
+  --color-elevated: #1E293B;          /* layers */
+
+  /* Text */
+  --color-primary-text: #E5E7EB;
+  --color-secondary-text: #94A3B8;
+
+  /* Brand */
+  --color-accent: #334155;            /* lighter slate */
+  --color-accent-light: #8B5CF6;      /* brighter purple */
+
+  /* UI */
+  --color-border: #1E293B;
+  --color-hover: #1E293B;
+
+  /* Footer */
+  --color-footer-bg: #020617;         /* deep but smooth */
+  --color-footer-text: #CBD5F5;
+}
+        
+        body {
+            background-color: var(--color-background);
+            color: var(--color-primary-text);
+            font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+            overflow-x: hidden;
+        }
+        
+        /* Utility Class Aliases */
+        .text-primary-text { color: var(--color-primary-text); }
+        .text-secondary-text { color: var(--color-secondary-text); }
+        .text-accent { color: var(--color-accent); }
+        .text-accent-light { color: var(--color-accent-light); }
+        .bg-background { background-color: var(--color-background); }
+        .bg-hover { background-color: var(--color-hover); }
+        .border-border { border-color: var(--color-border); }
+
+        /* Updated Gradients */
+        .bg-ocean-gradient {
+            background: linear-gradient(135deg, #1F2937 0%, #2D5A3F 100%);
+        }
+        .bg-coral-gradient {
+            background: linear-gradient(135deg, #7C3AED 0%, #F4D06F 100%);
+        }
+
+        /* Footer Specific Overrides */
+        #main-footer {
+            background-color: var(--color-footer-bg);
+            color: var(--color-footer-text);
+        }
+        #main-footer .footer-heading {
+            color: var(--color-accent-light) !important;
+        }
+        #main-footer .footer-link:hover {
+            color: var(--color-accent-light);
+            padding-inline-start: 4px;
+        }
+
+        /* Nav Link Underline Animation */
+        .nav-link {
+            position: relative;
+            transition: color 0.3s;
+            padding-top: 0.25rem;
+            padding-bottom: 0.25rem;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            left: 0; right: 0; bottom: 0;
+            height: 2px;
+            background-color: var(--color-accent-light);
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+        .nav-link:hover::after, .nav-link.active::after {
+            transform: scaleX(1);
+        }
+        .nav-link.active, .nav-link:hover {
+            color: var(--color-accent-light) !important;
+        }
+
+        /* DROPDOWN Logic */
+        .dropdown-wrapper { position: relative; }
+        .dropdown-wrapper::before {
+            content: '';
+            position: absolute;
+            left: 0; right: 0; height: 20px;
+            bottom: 100%;
+            z-index: 100;
+            background: transparent;
+        }
+        .dropdown-menu {
+            position: absolute;
+            top: calc(100% + 5px);
+            left: 0;
+            background-color: var(--color-background);
+            border: 1px solid var(--color-border);
+            border-radius: 0.5rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            min-width: 220px;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+        .dropdown-wrapper:hover .dropdown-menu {
+            opacity: 1; visibility: visible; transform: translateY(0);
+            display: block;
+        }
+        .dropdown-menu a {
+            display: block;
+            padding: 0.75rem 1rem;
+            color: var(--color-primary-text);
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: all 0.2s ease;
+            border-bottom: 1px solid var(--color-border);
+        }
+        .dropdown-menu a:last-child { border-bottom: none; }
+        .dropdown-menu a:hover {
+            background-color: var(--color-hover);
+            color: var(--color-accent-light);
+            padding-left: 1.25rem;
+        }
+
+        /* Dynamic Booking Button - Updated to Forest/Amber */
+        .book-btn {
+            background-color: var(--color-accent); 
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        html[data-theme='dark'] .book-btn {
+            background-color: var(--color-accent-light); 
+            color: #000;
+        }
+
+        .book-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(31, 61, 43, 0.3);
+        }
+
+        /* ===== AUTH TOGGLE SWITCH (Desktop Only) ===== */
+        .auth-toggle-wrap { display: none; }
+        @media (min-width: 1280px) { .auth-toggle-wrap { display: flex; align-items: center; } }
+        .auth-toggle-pill {
+            position: relative; display: inline-flex; align-items: center;
+            background-color: var(--color-hover); border: 1px solid var(--color-border);
+            border-radius: 9999px; padding: 4px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08); overflow: hidden;
+        }
+        html[data-theme='dark'] .auth-toggle-pill {
+            background-color: #1B2E23; border-color: #2D5A3F;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+        }
+        .auth-toggle-indicator {
+            position: absolute; top: 4px; bottom: 4px; left: 4px;
+            width: calc(50% - 4px);
+            background-color: var(--color-accent); border-radius: 9999px;
+            transition: transform 0.3s cubic-bezier(0.4,0,0.2,1); z-index: 0;
+            box-shadow: 0 2px 8px rgba(31,61,43,0.25);
+        }
+        html[data-theme='dark'] .auth-toggle-indicator {
+            background-color: var(--color-accent-light);
+            box-shadow: 0 2px 8px rgba(230,179,37,0.3);
+        }
+        .auth-toggle-pill[data-active="signup"] .auth-toggle-indicator { transform: translateX(calc(100%)); }
+        .auth-toggle-tab {
+            position: relative; z-index: 1; display: inline-flex;
+            align-items: center; justify-content: center;
+            padding: 0.45rem 1.2rem; border-radius: 9999px;
+            font-weight: 700; font-size: 0.875rem;
+            color: var(--color-secondary-text); text-decoration: none;
+            transition: color 0.25s ease; white-space: nowrap;
+            min-width: 72px; text-align: center; user-select: none;
+        }
+        .auth-toggle-tab--active { color: #ffffff; }
+        html[data-theme='dark'] .auth-toggle-tab--active { color: #000000; }
+        .auth-toggle-tab:not(.auth-toggle-tab--active):hover { color: var(--color-accent); }
+        html[data-theme='dark'] .auth-toggle-tab:not(.auth-toggle-tab--active):hover { color: var(--color-accent-light); }
+        .auth-toggle-tab:focus-visible { outline: 2px solid var(--color-accent-light); outline-offset: 2px; border-radius: 9999px; }
+
+        @media (max-width: 1024px) {
+            .dropdown-menu { position: static; display: none; opacity: 1; visibility: visible; transform: none; box-shadow: none; }
+            .dropdown-wrapper:hover .dropdown-menu { display: block; }
+        }
+
+        /* ===== DARK MODE OVERRIDES FOR HARDCODED COLORS ===== */
+        html[data-theme='dark'] .bg-white,
+        html[data-theme='dark'] section.bg-white,
+        html[data-theme='dark'] section.py-24.bg-white,
+        html[data-theme='dark'] section.py-20.bg-white {
+            background-color: var(--color-background) !important;
+        }
+        html[data-theme='dark'] .bg-\[\#F1F5F2\],
+        html[data-theme='dark'] section.bg-\[\#F1F5F2\],
+        html[data-theme='dark'] .bg-\[\#F9FAF9\],
+        html[data-theme='dark'] section.bg-\[\#F9FAF9\] {
+            background-color: var(--color-hover) !important;
+        }
+        html[data-theme='dark'] .text-\[\#1F2937\],
+        html[data-theme='dark'] h2.text-\[\#1F2937\],
+        html[data-theme='dark'] h3.text-\[\#1F2937\],
+        html[data-theme='dark'] h4.text-\[\#1F2937\],
+        html[data-theme='dark'] p.text-\[\#1F2937\] {
+            color: var(--color-primary-text) !important;
+        }
+        html[data-theme='dark'] .text-accent {
+            color: var(--color-accent-light) !important;
+        }
+        html[data-theme='dark'] .text-gray-600,
+        html[data-theme='dark'] .text-gray-500,
+        html[data-theme='dark'] .text-gray-400 {
+            color: var(--color-secondary-text) !important;
+        }
+        html[data-theme='dark'] .border-gray-100,
+        html[data-theme='dark'] .border-gray-200 {
+            border-color: var(--color-border) !important;
+        }
+        /* Cards with white/tinted backgrounds */
+        html[data-theme='dark'] .bg-white.rounded-2xl,
+        html[data-theme='dark'] .bg-white.rounded-3xl,
+        html[data-theme='dark'] .bg-white.p-8,
+        html[data-theme='dark'] .bg-white.p-10 {
+            background-color: var(--color-hover) !important;
+        }
+        /* Icon circles */
+        html[data-theme='dark'] .bg-\[\#F1F5F2\].rounded-full {
+            background-color: var(--color-border) !important;
+            color: var(--color-primary-text) !important;
+        }
+        /* Service/feature cards */
+        html[data-theme='dark'] .group.p-8.bg-\[\#F1F5F2\] {
+            background-color: var(--color-hover) !important;
+        }
+        /* Icon boxes */
+        html[data-theme='dark'] .bg-\[\#1F2937\].text-\[\#7C3AED\] {
+            background-color: var(--color-accent) !important;
+        }
+        /* Stats / number sections */
+        html[data-theme='dark'] .bg-\[\#F9FAF9\] .text-gray-600 {
+            color: var(--color-secondary-text) !important;
+        }
+        /* Testimonial cards */
+        html[data-theme='dark'] .bg-white.shadow {
+            background-color: var(--color-hover) !important;
+        }
+        /* RTL FIX - ONLY DIRECTION */
+html[dir="rtl"] .auth-toggle-indicator {
+    left: auto;
+    right: 4px;
+}
+
+html[dir="rtl"] .auth-toggle-pill[data-active="signup"] .auth-toggle-indicator {
+    transform: translateX(-100%);
+}
+    </style>
+</head>
+<body class="antialiased flex flex-col min-h-screen">
+
+    <header class="sticky top-0 z-50 transition-colors duration-300 shadow-xl border-b border-border bg-background" id="main-header">
+        <nav class="container mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center h-[70px]">
+            <!-- Brand (Left) -->
+            <div class="flex-shrink-0">
+                <a href="index.html" class="text-3xl font-serif font-extrabold tracking-tight text-accent-light">    
+                    WordCraft
+                </a>
+            </div>
+
+            <!-- Menu (Center) -->
+            <div class="hidden xl:flex flex-grow justify-center">
+                <div class="flex items-center space-x-6 rtl:space-x-reverse text-primary-text font-medium">
+                    <div class="dropdown-wrapper">
+                        <button class="nav-link flex items-center">
+                            Home
+                            <svg class="w-3 h-3 ml-1 relative top-[2.5px] transition-transform duration-200 text-primary-text" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a href="index.html">Home 1</a>
+                            <a href="home2.html">Home 2</a>
+                        </div>
+                    </div>
+                    <a href="service.html" class="nav-link">Services</a>
+                    <a href="portfolio.html" class="nav-link">Portfolio</a>
+                    <a href="blog.html" class="nav-link">Blog</a>
+                    <a href="about.html" class="nav-link active font-bold">About</a>
+                    <a href="contact.html" class="nav-link">Contact</a>
+                    <a href="resources.html" class="nav-link">Resources</a>
+                    <a href="casestudy.html" class="nav-link">Case Studies</a>
+                    <a href="faq.html" class="nav-link">FAQ</a>
+                </div>
+            </div>
+
+            <!-- Icons/Auth (Right) -->
+            <div class="hidden xl:flex items-center space-x-4">
+                <div class="flex items-center space-x-4 rtl:space-x-reverse">
+                    <button id="theme-toggle" class="icon-btn text-primary-text hover:text-accent-light p-1.5 rounded-full transition duration-200">
+                        <svg class="w-6 h-6 light-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                        <svg class="w-6 h-6 dark-icon hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+                    </button>
+                    <button id="lang-icon" class="text-primary-text hover:text-accent-light p-1.5 rounded-full transition duration-200">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
+                        </svg>
+                    </button>
+                    <div class="auth-toggle-wrap" role="tablist" aria-label="Authentication options">
+                        <div class="auth-toggle-pill" id="auth-toggle">
+                            <span class="auth-toggle-indicator" id="auth-toggle-indicator" aria-hidden="true"></span>
+                            <a href="login.html" role="tab" id="auth-tab-login"
+                               class="auth-toggle-tab auth-toggle-tab--active" aria-selected="true">Login</a>
+                            <a href="signup.html" role="tab" id="auth-tab-signup"
+                               class="auth-toggle-tab" aria-selected="false">Sign Up</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile Menu Toggle (Always Right) -->
+            <div class="xl:hidden ml-auto flex items-center space-x-4">
+                <button id="mobile-menu-open" class="icon-btn text-primary-text hover:text-accent-light p-1.5 rounded-full transition duration-200">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
+                </button>
+            </div>
+        </nav>
+    </header>
+<main class="flex-grow">
+ <!-- 1. ABOUT HERO -->
+<section class="py-20 lg:py-32 bg-[var(--color-background)] border-b border-[var(--color-border)]">
+    <div class="container mx-auto px-4 flex justify-center">
+        <div class="max-w-4xl text-center flex flex-col items-center">
+            <!-- Top Label -->
+            <div class="flex items-center justify-center space-x-3 mb-6">
+                <span class="h-px w-12 bg-[var(--color-accent-light)]"></span>
+                <span class="text-[var(--color-accent-light)] font-bold tracking-widest uppercase text-xs">
+                    ESTABLISHED 2012
+                </span>
+                <span class="h-px w-12 bg-[var(--color-accent-light)]"></span>
+            </div>
+            <!-- Heading -->
+            <h1 class="text-5xl md:text-7xl font-serif font-bold text-[var(--color-primary-text)] leading-tight mb-8">
+                The Architecture of <br>
+                <span class="italic text-[var(--color-secondary-text)]">
+                    Narrative Dominance.
+                </span>
+            </h1>
+            <!-- Paragraph -->
+            <p class="text-lg md:text-xl text-[var(--color-secondary-text)] leading-relaxed max-w-2xl">
+                I help brands bridge the gap between human desire and search engine algorithms. My mission is to craft copy that doesn't just read well, but converts with clinical precision.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- 2. CORE STRATEGY (STARK PROFESSIONAL BLOCKS) -->
+<section class="py-24 bg-[var(--color-surface)]">
+    <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div>
+                <img src="/assets/e1.jpg" alt="Strategy Process" class="w-full grayscale hover:grayscale-0 transition-all duration-700 border-l-8 border-[var(--color-accent-light)] shadow-2xl">
+            </div>
+            <div class="text-left rtl:text-right">
+                <h2 class="text-4xl font-serif font-bold text-[var(--color-primary-text)] mb-8">The Methodology</h2>
+                <div class="space-y-8">
+                    <div class="flex gap-6">
+                        <span class="text-2xl font-serif italic text-[var(--color-accent-light)] opacity-50">01</span>
+                        <div>
+                            <h4 class="text-lg font-bold uppercase tracking-tight text-[var(--color-primary-text)] mb-2">Semantic Authority</h4>
+                            <p class="text-sm text-[var(--color-secondary-text)] leading-relaxed">SEO isn't just about keywords; it's about topical dominance. I build content clusters that signal absolute authority to Google's E-E-A-T guidelines.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-6">
+                        <span class="text-2xl font-serif italic text-[var(--color-accent-light)] opacity-50">02</span>
+                        <div>
+                            <h4 class="text-lg font-bold uppercase tracking-tight text-[var(--color-primary-text)] mb-2">Conversion Psychology</h4>
+                            <p class="text-sm text-[var(--color-secondary-text)] leading-relaxed">Every sentence is a psychological step toward a 'Yes.' I utilize behavioral science to guide users through the cognitive stages of purchasing.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-6">
+                        <span class="text-2xl font-serif italic text-[var(--color-accent-light)] opacity-50">03</span>
+                        <div>
+                            <h4 class="text-lg font-bold uppercase tracking-tight text-[var(--color-primary-text)] mb-2">Revenue-First Writing</h4>
+                            <p class="text-sm text-[var(--color-secondary-text)] leading-relaxed">I prioritize ROI over vanity metrics. My goal is to drive organic traffic that actually contributes to your bottom line and customer acquisition.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 3. EXPERTISE (PREMIUM CARDS) -->
+<section class="py-24 bg-[var(--color-elevated)]">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-serif font-bold text-[var(--color-primary-text)] mb-4">Strategic Pillars</h2>
+            <div class="h-1 w-24 bg-[var(--color-accent-light)] mx-auto"></div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Card 1 -->
+            <div class="premium-card p-2 group bg-[var(--color-surface)] border border-[var(--color-border)] rounded-sm transition-all duration-500 hover:border-[var(--color-accent-light)] hover:-translate-y-2 flex flex-col h-full shadow-sm">
+                <div class="relative overflow-hidden aspect-square">
+                    <img src="/assets/e2.jpg" alt="SEO Analysis" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+                </div>
+                <div class="p-8 text-center flex-grow flex flex-col justify-center">
+                    <h4 class="text-xl font-bold text-[var(--color-primary-text)] uppercase tracking-tighter">SEO Content Hubs</h4>
+                    <p class="text-xs font-bold text-[var(--color-accent-light)] uppercase tracking-widest mt-1">Search Engine Dominance</p>
+                    <p class="mt-4 text-sm text-[var(--color-secondary-text)] italic">"Topical authority is the new keyword ranking."</p>
+                </div>
+            </div>
+            <!-- Card 2 -->
+            <div class="premium-card p-2 group bg-[var(--color-surface)] border border-[var(--color-border)] rounded-sm transition-all duration-500 hover:border-[var(--color-accent-light)] hover:-translate-y-2 flex flex-col h-full shadow-sm">
+                <div class="relative overflow-hidden aspect-square">
+                    <img src="/assets/e3.jpg" alt="Conversion Copy" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+                </div>
+                <div class="p-8 text-center flex-grow flex flex-col justify-center">
+                    <h4 class="text-xl font-bold text-[var(--color-primary-text)] uppercase tracking-tighter">Direct Response</h4>
+                    <p class="text-xs font-bold text-[var(--color-accent-light)] uppercase tracking-widest mt-1">Sales-Centric Narrative</p>
+                    <p class="mt-4 text-sm text-[var(--color-secondary-text)] italic">"Copy is a salesperson that never sleeps."</p>
+                </div>
+            </div>
+            <!-- Card 3 -->
+            <div class="premium-card p-2 group bg-[var(--color-surface)] border border-[var(--color-border)] rounded-sm transition-all duration-500 hover:border-[var(--color-accent-light)] hover:-translate-y-2 flex flex-col h-full shadow-sm">
+                <div class="relative overflow-hidden aspect-square">
+                    <img src="/assets/e4.jpg" alt="Brand Voice" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+                </div>
+                <div class="p-8 text-center flex-grow flex flex-col justify-center">
+                    <h4 class="text-xl font-bold text-[var(--color-primary-text)] uppercase tracking-tighter">Voice Identity</h4>
+                    <p class="text-[var(--color-accent-light)] font-bold uppercase tracking-widest mt-1 text-[10px]">Brand Guidelines</p>
+                    <p class="mt-4 text-sm text-[var(--color-secondary-text)] italic">"Consistent tone creates subconscious trust."</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 4. PERFORMANCE DATA -->
+<section class="py-16 bg-[var(--color-footer-bg)] text-white">
+    <div class="container mx-auto px-4">
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-12 text-center">
+            <div>
+                <p class="text-4xl font-serif font-bold mb-2">12+</p>
+                <p class="text-[10px] uppercase tracking-[0.2em] text-gray-400">Years Experience</p>
+            </div>
+            <div>
+                <p class="text-4xl font-serif font-bold mb-2">$50M+</p>
+                <p class="text-[10px] uppercase tracking-[0.2em] text-gray-400">Client ROI Generated</p>
+            </div>
+            <div>
+                <p class="text-4xl font-serif font-bold mb-2">150+</p>
+                <p class="text-[10px] uppercase tracking-[0.2em] text-gray-400">Niches Analyzed</p>
+            </div>
+            <div>
+                <p class="text-4xl font-serif font-bold mb-2">Top 3</p>
+                <p class="text-[10px] uppercase tracking-[0.2em] text-gray-400">SERP Ranking Goal</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 5. PORTFOLIO SHOWCASE -->
+<section class="py-24 bg-[var(--color-surface)] border-t border-[var(--color-border)]">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+            <h2 class="text-4xl font-serif font-bold text-[var(--color-primary-text)] mb-4">The Showcase</h2>
+            <div class="h-1 w-20 bg-[var(--color-accent-light)] mx-auto"></div>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="group relative overflow-hidden rounded-xl">
+                <img src="/assets/e5.jpg" class="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-110">
+                <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+                    <p class="text-white font-semibold uppercase tracking-widest text-[10px]">Case Study: SaaS Growth</p>
+                </div>
+            </div>
+            <div class="group relative overflow-hidden rounded-xl">
+                <img src="/assets/e6.jpg" class="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-110">
+                <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+                    <p class="text-white font-semibold uppercase tracking-widest text-[10px]">Data Dashboard</p>
+                </div>
+            </div>
+            <div class="group relative overflow-hidden rounded-xl">
+                <img src="/assets/e7.jpg" class="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-110">
+                <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+                    <p class="text-white font-semibold uppercase tracking-widest text-[10px]">Brand Guidelines</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 6. FINAL CTA -->
+<section class="py-20 bg-[var(--color-elevated)] border-t border-[var(--color-border)]">
+    <div class="container mx-auto px-4 text-center">
+        <h3 class="text-3xl font-serif font-bold text-[var(--color-primary-text)] mb-8">Ready to Scale Your Brand Authority?</h3>
+        <div class="flex flex-col sm:flex-row justify-center gap-6">
+            <a href="contact.html" class="px-10 py-4 bg-[var(--color-accent)] text-white font-bold uppercase tracking-widest text-xs hover:bg-[var(--color-accent-light)] transition-all">Request Audit</a>
+            <a href="portfolio.html" class="px-10 py-4 border border-[var(--color-primary-text)] text-[var(--color-primary-text)] font-bold uppercase tracking-widest text-xs hover:bg-[var(--color-primary-text)] hover:text-white transition-all">View Showcase</a>
+        </div>
+    </div>
+</section>
+</main>
+    <div id="mobile-menu-drawer" class="fixed inset-0 z-50 pointer-events-none transition-all duration-300">
+        <div id="drawer-backdrop" class="absolute inset-0 bg-black opacity-0 transition-opacity duration-300 pointer-events-none"></div>
+
+        <div id="drawer-content" class="absolute top-0 left-0 right-0 bg-background rounded-b-2xl shadow-2xl p-6 xl:hidden max-h-[85vh] overflow-y-auto transform translate-y-[-100%] transition-transform duration-300 ease-out">
+            <div class="flex justify-between items-center pb-4 border-b border-border">
+                <a href="index.html" class="text-3xl font-serif font-extrabold tracking-tight text-accent-light">
+                    WordCraft
+                </a>
+                <button id="mobile-menu-close" class="text-primary-text hover:text-accent-light p-1.5 rounded-full transition duration-200">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+
+            <nav class="flex flex-col space-y-2 py-4">
+                <div>
+                    <button class="block text-primary-text font-semibold text-lg py-2 w-full text-left flex justify-between items-center" id="mobile-homes-toggle">
+                        Home <svg class="w-4 h-4 transform transition-transform duration-200 text-primary-text" id="homes-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div id="mobile-homes-menu" class="hidden pl-4 flex flex-col space-y-1 mt-1 border-l-2 border-border rtl:pl-0 rtl:pr-4 rtl:border-l-0 rtl:border-r-2">
+                        <a href="index.html" class="block text-secondary-text hover:text-accent-light transition duration-200 text-base py-1 px-2">Home 1</a>
+                        <a href="home2.html" class="block text-secondary-text hover:text-accent-light transition duration-200 text-base py-1 px-2">Home 2</a>
+                    </div>
+                </div>
+
+                <a href="service.html" class="block text-primary-text font-semibold text-lg hover:text-accent-light transition duration-200 py-2">Services</a>
+                <a href="portfolio.html" class="block text-primary-text font-semibold text-lg hover:text-accent-light transition duration-200 py-2">Portfolio</a>
+                <a href="blog.html" class="block text-primary-text font-semibold text-lg hover:text-accent-light transition duration-200 py-2">Blog</a>
+                <a href="about.html" class="block text-accent-light font-bold text-lg hover:text-accent-light transition duration-200 py-2">About</a>
+                <a href="contact.html" class="block text-primary-text font-semibold text-lg hover:text-accent-light transition duration-200 py-2">Contact</a>
+                <a href="resources.html" class="block text-primary-text font-semibold text-lg hover:text-accent-light transition duration-200 py-2">Resources</a>
+                <a href="casestudy.html" class="block text-primary-text font-semibold text-lg hover:text-accent-light transition duration-200 py-2">Case Studies</a>
+                <a href="faq.html" class="block text-primary-text font-semibold text-lg hover:text-accent-light transition duration-200 py-2">FAQ</a>
+            </nav>
+
+            <div class="pt-4 border-t border-border mt-4 flex justify-around items-center">
+                <button id="mobile-lang-icon-drawer" class="icon-btn flex flex-col items-center text-primary-text hover:text-accent-light p-2 transition duration-200">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
+</svg>                    <span class="text-xs mt-1 text-secondary-text">RTL</span>
+                </button>
+              
+                <button id="drawer-theme-toggle" class="icon-btn flex flex-col items-center text-primary-text hover:text-accent-light p-2 transition duration-200">
+                    <svg class="w-6 h-6 light-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+                    <svg class="w-6 h-6 dark-icon hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+                    <span class="text-xs mt-1 text-secondary-text">Theme</span>
+                </button>
+            </div>
+            <div class="flex mt-5 gap-5 w-full px-2">
+                <a href="login.html" class="flex-1 book-btn text-center py-2 rounded-xl font-bold text-sm shadow-md">Login</a>
+                <a href="signup.html" class="flex-1 book-btn text-center py-2 rounded-xl font-bold text-sm shadow-md">Sign Up</a>
+            </div>
+        </div>
+    </div>
+    <footer id="main-footer" class="pt-20 transition-colors duration-300">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div
+                class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-5 gap-12 pb-16 border-b border-gray-800">
+                <div class="lg:col-span-2">
+                    <h1 class="text-3xl font-serif font-extrabold tracking-tight text-accent-light">WordCraft</h1>
+                    <p class="text-lg leading-relaxed max-w-sm !text-gray-300">
+                        Strategic content and SEO solutions designed to build brand authority and drive sustainable
+                        business growth.
+                    </p>
+                    <div class="flex space-x-6 rtl:space-x-reverse mt-10">
+                        <a href="#" class="text-white hover:text-accent-light transition text-xl"><i
+                                class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-white hover:text-accent-light transition text-xl"><i
+                                class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-white hover:text-accent-light transition text-xl"><i
+                                class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="footer-heading font-bold text-xl mb-6">Core Expertise</h4>
+                    <ul class="space-y-4">
+                        <li><a href="#" class="footer-link">SEO Strategy</a></li>
+                        <li><a href="#" class="footer-link">Conversion Copy</a></li>
+                        <li><a href="#" class="footer-link">Brand Identity</a></li>
+                        <li><a href="#" class="footer-link">Content Marketing</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-heading font-bold text-xl mb-6">Quick Links</h4>
+                    <ul class="space-y-4">
+                        <li><a href="service.html" class="footer-link">Services</a></li>
+                        <li><a href="portfolio.html" class="footer-link">Portfolio</a></li>
+                        <li><a href="blog.html" class="footer-link">Blog</a></li>
+                        <li><a href="contact.html" class="footer-link">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-heading font-bold text-xl mb-6">Newsletter</h4>
+                    <p class="text-sm mb-6 !text-gray-300">Subscribe for high-converting copy tips and SEO growth
+                        strategies.
+                    </p>
+                    <div class="flex flex-col space-y-4">
+                        <input type="email" placeholder="Your email address"
+                            class="p-4 text-sm rounded-xl bg-gray-900 border border-gray-800 focus:ring-1 focus:ring-accent-light focus:outline-none text-white" />
+                        <button
+                            class="bg-coral-gradient text-black font-bold py-3 rounded-xl transition hover:opacity-90">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            <div class="py-10 text-center text-gray-500 text-sm">� 2026 WordCraft. All rights reserved.</div>
+        </div>
+    </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const html = document.documentElement;
+
+        // Load saved settings
+        const savedLang = localStorage.getItem('language') || 'en';
+        document.documentElement.setAttribute('dir', savedLang === 'ar' ? 'rtl' : 'ltr');
+
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        applyTheme(savedTheme);
+
+        // --- Theme Logic ---
+        const themeToggles = [
+            document.getElementById('theme-toggle'),
+            document.getElementById('drawer-theme-toggle')
+        ].filter(Boolean);
+        
+        function applyTheme(theme) {
+            html.setAttribute('data-theme', theme);
+            document.querySelectorAll('.light-icon').forEach(i => i.classList.toggle('hidden', theme === 'dark'));
+            document.querySelectorAll('.dark-icon').forEach(i => i.classList.toggle('hidden', theme === 'light'));
+        }
+
+        themeToggles.forEach(btn => btn.addEventListener('click', () => {
+            const next = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+            localStorage.setItem('theme', next);
+            applyTheme(next);
+        }));
+
+        // --- Mobile Drawer Logic ---
+        const menuDrawer = document.getElementById('mobile-menu-drawer');
+        const menuContent = document.getElementById('drawer-content');
+        const menuBackdrop = document.getElementById('drawer-backdrop');
+
+        const openDrawer = () => {
+            menuDrawer.classList.remove('pointer-events-none');
+            menuContent.classList.remove('translate-y-[-100%]');
+            menuBackdrop.classList.add('opacity-50', 'pointer-events-auto');
+            document.body.style.overflow = 'hidden';
+        };
+
+        const closeDrawer = () => {
+            menuContent.classList.add('translate-y-[-100%]');
+            menuBackdrop.classList.remove('opacity-50', 'pointer-events-auto');
+            setTimeout(() => { 
+                menuDrawer.classList.add('pointer-events-none'); 
+                document.body.style.overflow = ''; 
+            }, 300);
+        };
+
+        document.getElementById('mobile-menu-open')?.addEventListener('click', openDrawer);
+        document.getElementById('mobile-menu-close')?.addEventListener('click', closeDrawer);
+        menuBackdrop?.addEventListener('click', closeDrawer);
+
+        // --- Accordions ---
+        const setupAccordion = (toggleId, menuId, iconId) => {
+            const toggle = document.getElementById(toggleId);
+            toggle?.addEventListener('click', () => {
+                document.getElementById(menuId)?.classList.toggle('hidden');
+                document.getElementById(iconId)?.classList.toggle('rotate-180');
+            });
+        };
+
+        setupAccordion('mobile-homes-toggle', 'mobile-homes-menu', 'homes-icon');
+
+        // --- RTL Logic ---
+        const toggleRTL = () => {
+            const current = localStorage.getItem('language') === 'ar' ? 'en' : 'ar';
+            localStorage.setItem('language', current);
+            document.documentElement.setAttribute('dir', current === 'ar' ? 'rtl' : 'ltr');
+        };
+
+        document.getElementById('lang-icon')?.addEventListener('click', toggleRTL);
+        document.getElementById('mobile-lang-icon-drawer')?.addEventListener('click', toggleRTL);
+
+        // ===== AUTH TOGGLE LOGIC =====
+        (function() {
+            var pill = document.getElementById('auth-toggle');
+            if (!pill) return;
+            var loginTab = document.getElementById('auth-tab-login');
+            var signupTab = document.getElementById('auth-tab-signup');
+            var page = window.location.pathname.split('/').pop() || '';
+            function setActive(tab) {
+                if (tab === 'signup') {
+                    pill.setAttribute('data-active', 'signup');
+                    loginTab.classList.remove('auth-toggle-tab--active'); loginTab.setAttribute('aria-selected','false');
+                    signupTab.classList.add('auth-toggle-tab--active'); signupTab.setAttribute('aria-selected','true');
+                } else {
+                    pill.setAttribute('data-active', 'login');
+                    signupTab.classList.remove('auth-toggle-tab--active'); signupTab.setAttribute('aria-selected','false');
+                    loginTab.classList.add('auth-toggle-tab--active'); loginTab.setAttribute('aria-selected','true');
+                }
+            }
+            setActive(page === 'signup.html' ? 'signup' : 'login');
+loginTab.onclick = function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    setActive('login');
+    setTimeout(() => { window.location.assign('login.html'); }, 300);
+};
+signupTab.onclick = function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    setActive('signup');
+    setTimeout(() => { window.location.assign('signup.html'); }, 700);
+};
+        })();
+    });
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+

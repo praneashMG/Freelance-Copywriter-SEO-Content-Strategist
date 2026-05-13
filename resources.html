@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/assets/fav.jpg" type="image/jpeg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <title>Resources | WordCraft Project Inquiries</title>
+
+    <script src="tailwind.js"></script>
+    <style>
+        /* ================================
+   🟣 PURPLE + SLATE DESIGN SYSTEM
+================================ */
+
+        /* ---------- LIGHT MODE ---------- */
+        :root,
+        html[data-theme='light'] {
+
+            /* Backgrounds */
+            --color-background: #F8FAFC;
+            /* soft neutral */
+            --color-surface: #FFFFFF;
+            /* cards */
+            --color-elevated: #F1F5F9;
+            /* sections */
+
+            /* Text */
+            --color-primary-text: #0F172A;
+            /* slate-900 */
+            --color-secondary-text: #475569;
+
+            /* Brand */
+            --color-accent: #1E293B;
+            /* slate dark */
+            --color-accent-light: #7C3AED;
+            /* purple */
+
+            /* UI */
+            --color-border: #E2E8F0;
+            --color-hover: #EEF2F7;
+
+            /* Footer */
+            --color-footer-bg: #1E293B;
+            --color-footer-text: #E2E8F0;
+        }
+
+
+        /* ---------- DARK MODE ---------- */
+        html[data-theme='dark'] {
+
+            /* Backgrounds */
+            --color-background: #0B1120;
+            /* deep slate */
+            --color-surface: #0F172A;
+            /* cards */
+            --color-elevated: #1E293B;
+            /* layers */
+
+            /* Text */
+            --color-primary-text: #E5E7EB;
+            --color-secondary-text: #94A3B8;
+
+            /* Brand */
+            --color-accent: #334155;
+            /* lighter slate */
+            --color-accent-light: #8B5CF6;
+            /* brighter purple */
+
+            /* UI */
+            --color-border: #1E293B;
+            --color-hover: #1E293B;
+
+            /* Footer */
+            --color-footer-bg: #020617;
+            /* deep but smooth */
+            --color-footer-text: #CBD5F5;
+        }
+
+        body {
+            background-color: var(--color-background);
+            color: var(--color-primary-text);
+            font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+            overflow-x: hidden;
+        }
+
+        /* Utility Class Aliases */
+        .text-primary-text {
+            color: var(--color-primary-text);
+        }
+
+        .text-secondary-text {
+            color: var(--color-secondary-text);
+        }
+
+        .text-accent {
+            color: var(--color-accent);
+        }
+
+        .text-accent-light {
+            color: var(--color-accent-light);
+        }
+
+        .bg-background {
+            background-color: var(--color-background);
+        }
+
+        .bg-hover {
+            background-color: var(--color-hover);
+        }
+
+        .border-border {
+            border-color: var(--color-border);
+        }
+
+        /* Updated Gradients */
+        .bg-ocean-gradient {
+            background: linear-gradient(135deg, #1F2937 0%, #2D5A3F 100%);
+        }
+
+        .bg-coral-gradient {
+            background: linear-gradient(135deg, #7C3AED 0%, #F4D06F 100%);
+        }
+
+        /* Footer Specific Overrides */
+        #main-footer {
+            background-color: var(--color-footer-bg);
+            color: var(--color-footer-text);
+        }
+
+        #main-footer .footer-heading {
+            color: var(--color-accent-light) !important;
+        }
+
+        #main-footer .footer-link:hover {
+            color: var(--color-accent-light);
+            padding-inline-start: 4px;
+        }
+
+        /* Nav Link Underline Animation */
+        .nav-link {
+            position: relative;
+            transition: color 0.3s;
+            padding-top: 0.25rem;
+            padding-bottom: 0.25rem;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 2px;
+            background-color: var(--color-accent-light);
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            transform: scaleX(1);
+        }
+
+        .nav-link.active,
+        .nav-link:hover {
+            color: var(--color-accent-light) !important;
+        }
+
+        /* DROPDOWN Logic */
+        .dropdown-wrapper {
+            position: relative;
+        }
+
+        .dropdown-wrapper::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 20px;
+            bottom: 100%;
+            z-index: 100;
+            background: transparent;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: calc(100% + 5px);
+            left: 0;
+            background-color: var(--color-background);
+            border: 1px solid var(--color-border);
+            border-radius: 0.5rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            min-width: 220px;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+
+        .dropdown-wrapper:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+            display: block;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 0.75rem 1rem;
+            color: var(--color-primary-text);
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: all 0.2s ease;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .dropdown-menu a:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: var(--color-hover);
+            color: var(--color-accent-light);
+            padding-left: 1.25rem;
+        }
+
+        /* Dynamic Booking Button - Updated to Forest/Amber */
+        .book-btn {
+            background-color: var(--color-accent);
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        html[data-theme='dark'] .book-btn {
+            background-color: var(--color-accent-light);
+            color: #000;
+        }
+
+        .book-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(31, 61, 43, 0.3);
+        }
+
+        /* ===== AUTH TOGGLE SWITCH (Desktop Only) ===== */
+        .auth-toggle-wrap {
+            display: none;
+        }
+
+        @media (min-width: 1280px) {
+            .auth-toggle-wrap {
+                display: flex;
+                align-items: center;
+            }
+        }
+
+        .auth-toggle-pill {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            background-color: var(--color-hover);
+            border: 1px solid var(--color-border);
+            border-radius: 9999px;
+            padding: 4px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+        }
+
+        html[data-theme='dark'] .auth-toggle-pill {
+            background-color: #1B2E23;
+            border-color: #2D5A3F;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .auth-toggle-indicator {
+            position: absolute;
+            top: 4px;
+            bottom: 4px;
+            left: 4px;
+            width: calc(50% - 4px);
+            background-color: var(--color-accent);
+            border-radius: 9999px;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 0;
+            box-shadow: 0 2px 8px rgba(31, 61, 43, 0.25);
+        }
+
+        html[data-theme='dark'] .auth-toggle-indicator {
+            background-color: var(--color-accent-light);
+            box-shadow: 0 2px 8px rgba(230, 179, 37, 0.3);
+        }
+
+        .auth-toggle-pill[data-active="signup"] .auth-toggle-indicator {
+            transform: translateX(calc(100%));
+        }
+
+        .auth-toggle-tab {
+            position: relative;
+            z-index: 1;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.45rem 1.2rem;
+            border-radius: 9999px;
+            font-weight: 700;
+            font-size: 0.875rem;
+            color: var(--color-secondary-text);
+            text-decoration: none;
+            transition: color 0.25s ease;
+            white-space: nowrap;
+            min-width: 72px;
+            text-align: center;
+            user-select: none;
+        }
+
+        .auth-toggle-tab--active {
+            color: #ffffff;
+        }
+
+        html[data-theme='dark'] .auth-toggle-tab--active {
+            color: #000000;
+        }
+
+        .auth-toggle-tab:not(.auth-toggle-tab--active):hover {
+            color: var(--color-accent);
+        }
+
+        html[data-theme='dark'] .auth-toggle-tab:not(.auth-toggle-tab--active):hover {
+            color: var(--color-accent-light);
+        }
+
+        .auth-toggle-tab:focus-visible {
+            outline: 2px solid var(--color-accent-light);
+            outline-offset: 2px;
+            border-radius: 9999px;
+        }
+
+        @media (max-width: 1024px) {
+            .dropdown-menu {
+                position: static;
+                display: none;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                box-shadow: none;
+            }
+
+            .dropdown-wrapper:hover .dropdown-menu {
+                display: block;
+            }
+        }
+
+        /* ===== DARK MODE OVERRIDES FOR HARDCODED COLORS ===== */
+        html[data-theme='dark'] .bg-white,
+        html[data-theme='dark'] section.bg-white,
+        html[data-theme='dark'] section.py-24.bg-white,
+        html[data-theme='dark'] section.py-20.bg-white {
+            background-color: var(--color-background) !important;
+        }
+
+        html[data-theme='dark'] .bg-\[\#F1F5F2\],
+        html[data-theme='dark'] section.bg-\[\#F1F5F2\],
+        html[data-theme='dark'] .bg-\[\#F9FAF9\],
+        html[data-theme='dark'] section.bg-\[\#F9FAF9\] {
+            background-color: var(--color-hover) !important;
+        }
+
+        html[data-theme='dark'] .text-\[\#1F2937\],
+        html[data-theme='dark'] h2.text-\[\#1F2937\],
+        html[data-theme='dark'] h3.text-\[\#1F2937\],
+        html[data-theme='dark'] h4.text-\[\#1F2937\],
+        html[data-theme='dark'] p.text-\[\#1F2937\] {
+            color: var(--color-primary-text) !important;
+        }
+
+        html[data-theme='dark'] .text-accent {
+            color: var(--color-accent-light) !important;
+        }
+
+        html[data-theme='dark'] .text-gray-600,
+        html[data-theme='dark'] .text-gray-500,
+        html[data-theme='dark'] .text-gray-400 {
+            color: var(--color-secondary-text) !important;
+        }
+
+        html[data-theme='dark'] .border-gray-100,
+        html[data-theme='dark'] .border-gray-200 {
+            border-color: var(--color-border) !important;
+        }
+
+        /* Cards with white/tinted backgrounds */
+        html[data-theme='dark'] .bg-white.rounded-2xl,
+        html[data-theme='dark'] .bg-white.rounded-3xl,
+        html[data-theme='dark'] .bg-white.p-8,
+        html[data-theme='dark'] .bg-white.p-10 {
+            background-color: var(--color-hover) !important;
+        }
+
+        /* Icon circles */
+        html[data-theme='dark'] .bg-\[\#F1F5F2\].rounded-full {
+            background-color: var(--color-border) !important;
+            color: var(--color-primary-text) !important;
+        }
+
+        /* Service/feature cards */
+        html[data-theme='dark'] .group.p-8.bg-\[\#F1F5F2\] {
+            background-color: var(--color-hover) !important;
+        }
+
+        /* Icon boxes */
+        html[data-theme='dark'] .bg-\[\#1F2937\].text-\[\#7C3AED\] {
+            background-color: var(--color-accent) !important;
+        }
+
+        /* Stats / number sections */
+        html[data-theme='dark'] .bg-\[\#F9FAF9\] .text-gray-600 {
+            color: var(--color-secondary-text) !important;
+        }
+
+        /* Testimonial cards */
+        html[data-theme='dark'] .bg-white.shadow {
+            background-color: var(--color-hover) !important;
+        }
+
+        /* RTL FIX - ONLY DIRECTION */
+        html[dir="rtl"] .auth-toggle-indicator {
+            left: auto;
+            right: 4px;
+        }
+
+        html[dir="rtl"] .auth-toggle-pill[data-active="signup"] .auth-toggle-indicator {
+            transform: translateX(-100%);
+        }
+    </style>
+</head>
+
+<body class="antialiased flex flex-col min-h-screen">
+
+    <header class="sticky top-0 z-50 transition-colors duration-300 shadow-xl border-b border-border bg-background"
+        id="main-header">
+        <nav class="container mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center h-[70px]">
+            <!-- Brand (Left) -->
+            <div class="flex-shrink-0">
+                <a href="index.html" class="text-3xl font-serif font-extrabold tracking-tight text-accent-light">
+                    WordCraft
+                </a>
+            </div>
+
+            <!-- Menu (Center) -->
+            <div class="hidden xl:flex flex-grow justify-center">
+                <div class="flex items-center space-x-6 rtl:space-x-reverse text-primary-text font-medium">
+                    <div class="dropdown-wrapper">
+                        <button class="nav-link flex items-center">
+                            Home
+                            <svg class="w-3 h-3 ml-1 relative top-[2.5px] transition-transform duration-200 text-primary-text"
+                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a href="index.html">Home 1</a>
+                            <a href="home2.html">Home 2</a>
+                        </div>
+                    </div>
+                    <a href="service.html" class="nav-link">Services</a>
+                    <a href="portfolio.html" class="nav-link">Portfolio</a>
+                    <a href="blog.html" class="nav-link">Blog</a>
+                    <a href="about.html" class="nav-link">About</a>
+                    <a href="contact.html" class="nav-link">Contact</a>
+                    <a href="resources.html" class="nav-link active font-bold">Resources</a>
+                    <a href="casestudy.html" class="nav-link">Case Studies</a>
+                    <a href="faq.html" class="nav-link">FAQ</a>
+                </div>
+            </div>
+
+            <!-- Icons/Auth (Right) -->
+            <div class="hidden xl:flex items-center space-x-4">
+                <div class="flex items-center space-x-4 rtl:space-x-reverse">
+                    <button id="theme-toggle"
+                        class="icon-btn text-primary-text hover:text-accent-light p-1.5 rounded-full transition duration-200">
+                        <svg class="w-6 h-6 light-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z">
+                            </path>
+                        </svg>
+                        <svg class="w-6 h-6 dark-icon hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z">
+                            </path>
+                        </svg>
+                    </button>
+                    <button id="lang-icon"
+                        class="text-primary-text hover:text-accent-light p-1.5 rounded-full transition duration-200">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
+                        </svg>
+                    </button>
+                    <div class="auth-toggle-wrap" role="tablist" aria-label="Authentication options">
+                        <div class="auth-toggle-pill" id="auth-toggle">
+                            <span class="auth-toggle-indicator" id="auth-toggle-indicator" aria-hidden="true"></span>
+                            <a href="login.html" role="tab" id="auth-tab-login"
+                                class="auth-toggle-tab auth-toggle-tab--active" aria-selected="true">Login</a>
+                            <a href="signup.html" role="tab" id="auth-tab-signup" class="auth-toggle-tab"
+                                aria-selected="false">Sign Up</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile Menu Toggle (Always Right) -->
+            <div class="xl:hidden ml-auto flex items-center space-x-4">
+                <button id="mobile-menu-open"
+                    class="icon-btn text-primary-text hover:text-accent-light p-1.5 rounded-full transition duration-200">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+        </nav>
+    </header>
+    <main class="flex-grow">
+        <!-- 1. RESOURCE VAULT HERO -->
+        <section class="py-20 lg:py-32 bg-[var(--color-background)] border-b border-[var(--color-border)]">
+            <div class="container mx-auto px-4 flex justify-center">
+                <div class="max-w-4xl text-center flex flex-col items-center">
+                    <!-- Top Label -->
+                    <div class="flex items-center justify-center space-x-3 mb-6">
+                        <span class="h-px w-12 bg-[var(--color-accent-light)]"></span>
+                        <span class="text-[var(--color-accent-light)] font-bold tracking-widest uppercase text-xs">
+                            Growth Assets
+                        </span>
+                        <span class="h-px w-12 bg-[var(--color-accent-light)]"></span>
+                    </div>
+
+                    <!-- Heading -->
+                    <h1
+                        class="text-5xl md:text-7xl font-serif font-bold text-[var(--color-primary-text)] leading-tight mb-8">
+                        The Narrative <br>
+                        <span class="italic text-[var(--color-secondary-text)]">
+                            Intelligence Vault.
+                        </span>
+                    </h1>
+
+                    <!-- Description -->
+                    <p class="text-lg md:text-xl text-[var(--color-secondary-text)] leading-relaxed max-w-2xl">
+                        A curated collection of frameworks, SEO checklists, and copywriting templates designed to help
+                        brands scale their organic authority.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. FEATURED KNOWLEDGE HUB -->
+        <section class="py-20 bg-[var(--color-surface)] border-b border-[var(--color-border)] overflow-hidden">
+            <div class="container mx-auto px-4">
+
+                <!-- Top Heading -->
+                <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-16">
+                    <div class="max-w-2xl">
+                        <p
+                            class="text-[10px] font-bold uppercase tracking-[0.4em] text-[var(--color-accent-light)] mb-5">
+                            Curated Resources
+                        </p>
+
+                        <h2
+                            class="text-4xl md:text-5xl font-serif font-bold text-[var(--color-primary-text)] leading-tight">
+                            Learn Faster. <br>
+                            <span class="italic text-[var(--color-secondary-text)]">
+                                Rank Smarter.
+                            </span>
+                        </h2>
+                    </div>
+
+                    <a href="#"
+                        class="group inline-flex items-center gap-3 text-xs font-bold uppercase tracking-[0.25em] text-[var(--color-primary-text)] hover:text-[var(--color-accent-light)] transition-all">
+                        Explore Full Library
+                        <span
+                            class="w-10 h-10 rounded-full border border-[var(--color-border)] flex items-center justify-center group-hover:bg-[var(--color-accent-light)] group-hover:text-white group-hover:border-[var(--color-accent-light)] transition-all">
+                            <i class="fas fa-arrow-right text-xs"></i>
+                        </span>
+                    </a>
+                </div>
+
+                <!-- Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+
+                    <!-- Card 1 -->
+                    <div
+                        class="group p-8 border border-[var(--color-border)] bg-[var(--color-background)] hover:-translate-y-2 hover:shadow-2xl transition-all duration-500">
+                        <div
+                            class="w-14 h-14 rounded-full bg-[var(--color-elevated)] flex items-center justify-center mb-8 group-hover:bg-[var(--color-accent-light)] group-hover:text-white transition-all">
+                            <i class="fas fa-chart-line text-xl"></i>
+                        </div>
+
+                        <h4 class="text-xl font-bold mb-4 text-[var(--color-primary-text)]">
+                            SEO Blueprints
+                        </h4>
+
+                        <p class="text-sm leading-relaxed text-[var(--color-secondary-text)] mb-8">
+                            Actionable frameworks to improve rankings, topical authority, and organic traffic growth.
+                        </p>
+
+                        <a href="#"
+                            class="text-[10px] uppercase tracking-[0.25em] font-bold text-[var(--color-accent-light)]">
+                            Read Guides
+                        </a>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div
+                        class="group p-8 border border-[var(--color-border)] bg-[var(--color-background)] hover:-translate-y-2 hover:shadow-2xl transition-all duration-500">
+                        <div
+                            class="w-14 h-14 rounded-full bg-[var(--color-elevated)] flex items-center justify-center mb-8 group-hover:bg-[var(--color-accent-light)] group-hover:text-white transition-all">
+                            <i class="fas fa-pen-nib text-xl"></i>
+                        </div>
+
+                        <h4 class="text-xl font-bold mb-4 text-[var(--color-primary-text)]">
+                            Copy Templates
+                        </h4>
+
+                        <p class="text-sm leading-relaxed text-[var(--color-secondary-text)] mb-8">
+                            High-converting headline formulas, landing page structures, and email sequences.
+                        </p>
+
+                        <a href="#"
+                            class="text-[10px] uppercase tracking-[0.25em] font-bold text-[var(--color-accent-light)]">
+                            Access Files
+                        </a>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div
+                        class="group p-8 border border-[var(--color-border)] bg-[var(--color-background)] hover:-translate-y-2 hover:shadow-2xl transition-all duration-500">
+                        <div
+                            class="w-14 h-14 rounded-full bg-[var(--color-elevated)] flex items-center justify-center mb-8 group-hover:bg-[var(--color-accent-light)] group-hover:text-white transition-all">
+                            <i class="fas fa-layer-group text-xl"></i>
+                        </div>
+
+                        <h4 class="text-xl font-bold mb-4 text-[var(--color-primary-text)]">
+                            Brand Systems
+                        </h4>
+
+                        <p class="text-sm leading-relaxed text-[var(--color-secondary-text)] mb-8">
+                            Voice consistency systems and storytelling frameworks for modern digital brands.
+                        </p>
+
+                        <a href="#"
+                            class="text-[10px] uppercase tracking-[0.25em] font-bold text-[var(--color-accent-light)]">
+                            View Systems
+                        </a>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div
+                        class="group bg-[var(--color-accent)] text-white p-8 flex flex-col justify-between overflow-hidden relative">
+
+                        <div
+                            class="absolute top-0 right-0 w-40 h-40 bg-white/5 rounded-full translate-x-1/2 -translate-y-1/2">
+                        </div>
+
+                        <div>
+                            <div class="w-14 h-14 rounded-full bg-white/10 flex items-center justify-center mb-8">
+                                <i class="fas fa-bolt text-xl"></i>
+                            </div>
+
+                            <h4 class="text-2xl font-serif font-bold leading-snug mb-4">
+                                Weekly Growth Dispatch
+                            </h4>
+
+                            <p class="text-sm text-white/70 leading-relaxed">
+                                One advanced SEO insight and one conversion strategy delivered every Tuesday.
+                            </p>
+                        </div>
+
+                        <a href="#"
+                            class="mt-10 inline-flex items-center gap-3 text-[10px] uppercase tracking-[0.3em] font-bold">
+                            Join Newsletter
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+<!-- 3. FEATURED STRATEGY GUIDES -->
+<section class="py-20 md:py-24 bg-[var(--color-background)] overflow-hidden">
+    <div class="container mx-auto px-4">
+
+        <!-- Section Heading -->
+        <div class="max-w-3xl mb-14 md:mb-20 text-center mx-auto">
+            <p
+                class="text-[10px] font-bold uppercase tracking-[0.4em] text-[var(--color-accent-light)] mb-5">
+                Featured Resources
+            </p>
+
+            <h2
+                class="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-[var(--color-primary-text)] leading-tight">
+                Strategy Guides Built <br>
+                <span class="italic text-[var(--color-secondary-text)]">
+                    For Modern Brands.
+                </span>
+            </h2>
+
+            <p
+                class="mt-6 text-sm md:text-base text-[var(--color-secondary-text)] leading-relaxed max-w-2xl mx-auto">
+                Explore premium SEO frameworks, copywriting systems, and brand growth assets designed to help businesses scale authority and conversions.
+            </p>
+        </div>
+
+        <!-- Responsive Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8">
+
+            <!-- Resource 1 -->
+            <div
+                class="group bg-[var(--color-surface)] border border-[var(--color-border)] p-8 md:p-10 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 rounded-2xl">
+
+                <div
+                    class="w-14 h-14 rounded-2xl bg-[var(--color-elevated)] flex items-center justify-center mb-8 group-hover:bg-[var(--color-accent-light)] group-hover:text-white transition-all duration-300">
+                    <i class="fas fa-file-invoice text-xl"></i>
+                </div>
+
+                <h4
+                    class="text-2xl font-bold text-[var(--color-primary-text)] tracking-tight mb-4 leading-snug">
+                    The Semantic SEO Playbook
+                </h4>
+
+                <p
+                    class="text-sm md:text-base text-[var(--color-secondary-text)] leading-relaxed mb-8">
+                    A comprehensive guide on building topical authority clusters that rank without heavy backlinking.
+                </p>
+
+                <a href="#"
+                    class="inline-flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.25em] text-[var(--color-accent-light)]">
+                    Download PDF
+                    <i class="fas fa-arrow-right text-xs"></i>
+                </a>
+            </div>
+
+            <!-- Resource 2 -->
+            <div
+                class="group bg-[var(--color-accent)] text-white p-8 md:p-10 rounded-2xl shadow-2xl relative overflow-hidden">
+
+                <div
+                    class="absolute top-0 right-0 w-40 h-40 bg-white/5 rounded-full translate-x-1/2 -translate-y-1/2">
+                </div>
+
+                <div class="relative z-10">
+                    <div class="w-14 h-14 rounded-2xl bg-white/10 flex items-center justify-center mb-8">
+                        <i class="fas fa-bolt text-xl"></i>
+                    </div>
+
+                    <h4 class="text-2xl font-bold tracking-tight mb-4 leading-snug">
+                        High-Conversion Headlines
+                    </h4>
+
+                    <p class="text-sm md:text-base text-white/75 leading-relaxed mb-8">
+                        50+ psychological headline formulas for landing pages that have generated over $5M in revenue for clients.
+                    </p>
+
+                    <a href="#"
+                        class="inline-flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.25em] border-b border-white/40 pb-1">
+                        Access Template
+                        <i class="fas fa-arrow-right text-xs"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Resource 3 -->
+            <div
+                class="group bg-[var(--color-surface)] border border-[var(--color-border)] p-8 md:p-10 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 rounded-2xl md:col-span-2 xl:col-span-1">
+
+                <div
+                    class="w-14 h-14 rounded-2xl bg-[var(--color-elevated)] flex items-center justify-center mb-8 group-hover:bg-[var(--color-accent-light)] group-hover:text-white transition-all duration-300">
+                    <i class="fas fa-microphone-alt text-xl"></i>
+                </div>
+
+                <h4
+                    class="text-2xl font-bold text-[var(--color-primary-text)] tracking-tight mb-4 leading-snug">
+                    Brand Voice Audit Kit
+                </h4>
+
+                <p
+                    class="text-sm md:text-base text-[var(--color-secondary-text)] leading-relaxed mb-8">
+                    A technical checklist to evaluate the consistency and impact of your brand's verbal identity across channels.
+                </p>
+
+                <a href="#"
+                    class="inline-flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.25em] text-[var(--color-accent-light)]">
+                    Open Guide
+                    <i class="fas fa-arrow-right text-xs"></i>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+        <!-- 4. RECOMMENDED TECH STACK (STRIP) -->
+        <section class="py-16 bg-[var(--color-elevated)] border-y border-[var(--color-border)]">
+            <div class="container mx-auto px-4">
+                <h5
+                    class="text-center text-[10px] font-bold uppercase tracking-[0.4em] text-[var(--color-accent-light)] mb-12">
+                    Tools of the Trade</h5>
+                <div
+                    class="flex flex-wrap justify-center md:justify-around gap-12 opacity-40 grayscale group hover:grayscale-0 transition-all">
+                    <div class="flex items-center gap-3">
+                        <i class="fas fa-chart-area text-2xl"></i>
+                        <span class="font-bold text-lg">Ahrefs</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <i class="fas fa-search-dollar text-2xl"></i>
+                        <span class="font-bold text-lg">SEMrush</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <i class="fas fa-feather-alt text-2xl"></i>
+                        <span class="font-bold text-lg">Clearscope</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <i class="fas fa-pencil-ruler text-2xl"></i>
+                        <span class="font-bold text-lg">Grammarly</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <i class="fas fa-shapes text-2xl"></i>
+                        <span class="font-bold text-lg">Jasper</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. CASE STUDY ARCHIVES -->
+        <section class="py-24 bg-[var(--color-background)]">
+            <div class="container mx-auto px-4">
+                <div class="flex flex-col md:flex-row gap-20 items-center">
+                    <div class="md:w-1/2">
+                        <div class="relative group overflow-hidden border border-[var(--color-border)]">
+                            <img src="/assets/dat.jpg"
+                                class="w-full h-[500px] object-cover grayscale group-hover:grayscale-0 transition-all duration-1000">
+                            <div
+                                class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center p-12 text-center">
+                                <p class="text-white font-serif italic text-lg">"How we scaled a B2B SaaS blog from 0 to
+                                    100k monthly sessions in 9 months."</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2 space-y-10">
+                        <h2 class="text-4xl font-serif font-bold text-[var(--color-primary-text)] tracking-tight">The
+                            Data Behind <br><span class="italic">The Copy.</span></h2>
+                        <p class="text-[var(--color-secondary-text)] leading-relaxed">I believe in radical transparency.
+                            Every resource here is backed by real client data and measurable SERP movements. Access the
+                            detailed breakdowns of my most successful campaigns.</p>
+                        <div class="grid grid-cols-2 gap-8">
+                            <div>
+                                <p class="text-3xl font-serif font-bold text-[var(--color-accent-light)]">45%</p>
+                                <p class="text-[9px] font-bold uppercase tracking-widest mt-2">Avg. Opt-in Lift</p>
+                            </div>
+                            <div>
+                                <p class="text-3xl font-serif font-bold text-[var(--color-accent-light)]">120k</p>
+                                <p class="text-[9px] font-bold uppercase tracking-widest mt-2">Leads Generated</p>
+                            </div>
+                        </div>
+                        <a href="portfolio.html"
+                            class="px-10 py-4 border border-[var(--color-primary-text)] text-[var(--color-primary-text)] font-bold uppercase tracking-widest text-xs hover:bg-[var(--color-primary-text)] hover:text-white transition-all inline-block">Browse
+                            Case Studies</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. FINAL RESOURCE CTA -->
+        <section class="py-24 bg-[var(--color-surface)] border-t border-[var(--color-border)]">
+            <div class="container mx-auto px-4 max-w-4xl text-center">
+                <div
+                    class="bg-[var(--color-background)] border border-[var(--color-border)] p-12 md:p-20 shadow-2xl relative">
+                    <div
+                        class="absolute -top-6 left-1/2 -translate-x-1/2 px-6 py-2 bg-[var(--color-accent)] text-white text-[9px] font-bold uppercase tracking-[0.3em]">
+                        Stay Informed</div>
+                    <h3 class="text-3xl font-serif font-bold text-[var(--color-primary-text)] mb-6 tracking-tight">Join
+                        the Weekly <br><span class="italic text-[var(--color-secondary-text)]">Revenue Protocol.</span>
+                    </h3>
+                    <p class="text-sm text-[var(--color-secondary-text)] mb-10 max-w-md mx-auto">Get one high-impact SEO
+                        strategy and one conversion copywriting tip delivered to your inbox every Tuesday.</p>
+                    <form class="flex flex-col sm:flex-row gap-4">
+                        <input type="email" placeholder="Your professional email"
+                            class="flex-1 px-6 py-4 bg-[var(--color-elevated)] border border-[var(--color-border)] text-sm focus:outline-none focus:border-[var(--color-accent-light)]">
+                        <button type="submit"
+                            class="px-10 py-4 bg-[var(--color-accent)] text-white font-bold uppercase tracking-widest text-[10px] hover:bg-[var(--color-accent-light)] transition-all">Subscribe
+                            Now</button>
+                    </form>
+                    <p class="mt-6 text-[9px] text-[var(--color-secondary-text)] opacity-60 uppercase tracking-widest">
+                        Zero spam. High-signal insights only.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    <div id="mobile-menu-drawer" class="fixed inset-0 z-50 pointer-events-none transition-all duration-300">
+        <div id="drawer-backdrop"
+            class="absolute inset-0 bg-black opacity-0 transition-opacity duration-300 pointer-events-none"></div>
+
+        <div id="drawer-content"
+            class="absolute top-0 left-0 right-0 bg-background rounded-b-2xl shadow-2xl p-6 xl:hidden max-h-[85vh] overflow-y-auto transform translate-y-[-100%] transition-transform duration-300 ease-out">
+            <div class="flex justify-between items-center pb-4 border-b border-border">
+                <a href="index.html" class="text-3xl font-serif font-extrabold tracking-tight text-accent-light">
+                    WordCraft
+                </a>
+                <button id="mobile-menu-close"
+                    class="text-primary-text hover:text-accent-light p-1.5 rounded-full transition duration-200">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                        </path>
+                    </svg>
+                </button>
+            </div>
+
+            <nav class="flex flex-col space-y-2 py-4">
+                <div>
+                    <button
+                        class="block text-primary-text font-semibold text-lg py-2 w-full text-left flex justify-between items-center"
+                        id="mobile-homes-toggle">
+                        Home <svg class="w-4 h-4 transform transition-transform duration-200 text-primary-text"
+                            id="homes-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                            </path>
+                        </svg>
+                    </button>
+                    <div id="mobile-homes-menu"
+                        class="hidden pl-4 flex flex-col space-y-1 mt-1 border-l-2 border-border rtl:pl-0 rtl:pr-4 rtl:border-l-0 rtl:border-r-2">
+                        <a href="index.html"
+                            class="block text-secondary-text hover:text-accent-light transition duration-200 text-base py-1 px-2">Home
+                            1</a>
+                        <a href="home2.html"
+                            class="block text-secondary-text hover:text-accent-light transition duration-200 text-base py-1 px-2">Home
+                            2</a>
+                    </div>
+                </div>
+
+                <a href="service.html"
+                    class="block text-primary-text font-semibold text-lg hover:text-accent-light transition duration-200 py-2">Services</a>
+                <a href="portfolio.html"
+                    class="block text-primary-text font-semibold text-lg hover:text-accent-light transition duration-200 py-2">Portfolio</a>
+                <a href="blog.html"
+                    class="block text-primary-text font-semibold text-lg hover:text-accent-light transition duration-200 py-2">Blog</a>
+                <a href="about.html"
+                    class="block text-primary-text font-semibold text-lg hover:text-accent-light transition duration-200 py-2">About</a>
+                <a href="contact.html"
+                    class="block text-primary-text font-semibold text-lg hover:text-accent-light transition duration-200 py-2">Contact</a>
+                <a href="resources.html"
+                    class="block text-accent-light font-bold text-lg hover:text-accent-light transition duration-200 py-2">Resources</a>
+                <a href="casestudy.html"
+                    class="block text-primary-text font-semibold text-lg hover:text-accent-light transition duration-200 py-2">Case
+                    Studies</a>
+                <a href="faq.html"
+                    class="block text-primary-text font-semibold text-lg hover:text-accent-light transition duration-200 py-2">FAQ</a>
+
+
+            </nav>
+
+            <div class="pt-4 border-t border-border mt-4 flex justify-around items-center">
+                <button id="mobile-lang-icon-drawer"
+                    class="icon-btn flex flex-col items-center text-primary-text hover:text-accent-light p-2 transition duration-200">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
+                    </svg> <span class="text-xs mt-1 text-secondary-text">RTL</span>
+                </button>
+
+                <button id="drawer-theme-toggle"
+                    class="icon-btn flex flex-col items-center text-primary-text hover:text-accent-light p-2 transition duration-200">
+                    <svg class="w-6 h-6 light-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                    </svg>
+                    <svg class="w-6 h-6 dark-icon hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                    </svg>
+                    <span class="text-xs mt-1 text-secondary-text">Theme</span>
+                </button>
+            </div>
+            <div class="flex mt-5 gap-5 w-full px-2">
+                <a href="login.html"
+                    class="flex-1 book-btn text-center py-2 rounded-xl font-bold text-sm shadow-md">Login</a>
+                <a href="signup.html"
+                    class="flex-1 book-btn text-center py-2 rounded-xl font-bold text-sm shadow-md">Sign Up</a>
+            </div>
+        </div>
+    </div>
+    <footer id="main-footer" class="pt-20 transition-colors duration-300">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div
+                class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-5 gap-12 pb-16 border-b border-gray-800">
+                <div class="lg:col-span-2">
+                    <h1 class="text-3xl font-serif font-extrabold tracking-tight text-accent-light">WordCraft</h1>
+                    <p class="text-lg leading-relaxed max-w-sm !text-gray-300">
+                        Strategic content and SEO solutions designed to build brand authority and drive sustainable
+                        business growth.
+                    </p>
+                    <div class="flex space-x-6 rtl:space-x-reverse mt-10">
+                        <a href="#" class="text-white hover:text-accent-light transition text-xl"><i
+                                class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-white hover:text-accent-light transition text-xl"><i
+                                class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-white hover:text-accent-light transition text-xl"><i
+                                class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="footer-heading font-bold text-xl mb-6">Core Expertise</h4>
+                    <ul class="space-y-4">
+                        <li><a href="#" class="footer-link">SEO Strategy</a></li>
+                        <li><a href="#" class="footer-link">Conversion Copy</a></li>
+                        <li><a href="#" class="footer-link">Brand Identity</a></li>
+                        <li><a href="#" class="footer-link">Content Marketing</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-heading font-bold text-xl mb-6">Quick Links</h4>
+                    <ul class="space-y-4">
+                        <li><a href="service.html" class="footer-link">Services</a></li>
+                        <li><a href="portfolio.html" class="footer-link">Portfolio</a></li>
+                        <li><a href="blog.html" class="footer-link">Blog</a></li>
+                        <li><a href="contact.html" class="footer-link">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-heading font-bold text-xl mb-6">Newsletter</h4>
+                    <p class="text-sm mb-6 !text-gray-300">Subscribe for high-converting copy tips and SEO growth
+                        strategies.
+                    </p>
+                    <div class="flex flex-col space-y-4">
+                        <input type="email" placeholder="Your email address"
+                            class="p-4 text-sm rounded-xl bg-gray-900 border border-gray-800 focus:ring-1 focus:ring-accent-light focus:outline-none text-white" />
+                        <button
+                            class="bg-coral-gradient text-black font-bold py-3 rounded-xl transition hover:opacity-90">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            <div class="py-10 text-center text-gray-500 text-sm">� 2026 WordCraft. All rights reserved.</div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const html = document.documentElement;
+
+            // Load saved settings
+            const savedLang = localStorage.getItem('language') || 'en';
+            document.documentElement.setAttribute('dir', savedLang === 'ar' ? 'rtl' : 'ltr');
+
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            applyTheme(savedTheme);
+
+            // --- Theme Logic ---
+            const themeToggles =           document.getElementById('theme-toggle'),
+                document.getElementById('drawer-theme-toggle')
+            ].filter(Boolean);
+
+            function applyTheme(theme) {
+                html.setAttribute('data-theme', theme);
+                document.querySelectorAll('.light-icon').forEach(i => i.classList.toggle('hidden', theme === 'dark'));
+                document.querySelectorAll('.dark-icon').forEach(i => i.classList.toggle('hidden', theme === 'light'));
+            }
+
+            themeToggles.forEach(btn => btn.addEventListener('click', () => {
+                const next = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+                localStorage.setItem('theme', next);
+                applyTheme(next);
+            }));
+
+            // --- Mobile Drawer Logic ---
+            const menuDrawer = document.getElementById('mobile-menu-drawer');
+            const menuContent = document.getElementById('drawer-content');
+            const menuBackdrop = document.getElementById('drawer-backdrop');
+
+            const openDrawer = () => {
+                menuDrawer.classList.remove('pointer-events-none');
+                menuContent.classList.remove('translate-y-[-100%]');
+                menuBackdrop.classList.add('opacity-50', 'pointer-events-auto');
+                document.body.style.overflow = 'hidden';            };
+
+            const closeDrawer = () => {
+               menuContent.classList.add('translate-y-[-100%');
+                menuBackdrop.classList.remove('opacity-50', 'pointer-events-auto');
+                setTimeout(() => {
+                    menuDrawer.classList.add('pointer-events-none');
+                    document.body.style.overflow = '';
+                }, 300);
+            };
+
+            document.getElementById('mobile-menu-open')?.addEventListener('click', openDrawer);
+            document.getElementById('mobile-menu-close')?.addEventListener('click', closeDrawer);
+            menuBackdrop?.addEventListener('click', closeDrawer);
+
+            // --- Accordions ---
+            const setupAccordion = (toggleId, menuId, iconId) => {
+                const toggle = document.getElementById(toggleId);
+                toggle?.addEventListener('click', () => {
+                    document.getElementById(menuId)?.classList.toggle('hidden');
+                    document.getElementById(iconId)?.classList.toggle('rotate-180');
+                });
+            };
+
+            setupAccordion('mobile-homes-toggle', 'mobile-homes-menu', 'homes-icon');
+
+            // --- RTL Logic ---
+            const toggleRTL = () => {
+                const current = localStorage.getItem('language') === 'ar' ? 'en' : 'ar';
+                localStorage.setItem('language', current);
+                document.do cumentElement.setAttribute('dir', current === 'ar' ? 'rtl' : 'ltr');
+            };
+
+            document.getElementById('lang-icon')?.addEventListener('click', toggleRTL);
+            document.getElementById('mobile-lang-icon-drawer')?.addEventListener('click', toggleRTL);
+
+            // ===== AUTH TOGGLE LOGIC =====
+            (function () {
+                var pill = document.getElementById('auth-toggle');
+                if (!pill) return;
+                var loginTab = document.getElementById('auth-tab-login');
+                var signupTab = document.ge tElementById('auth-tab-signup');
+                var page = window.location.pathname.split('/').pop() || '';
+                 function setActive(tab) {
+                    if (tab === 'signup') {
+                        pill.setAttribute('data-active', 'signup');
+                        loginTab.classList.remove('auth-toggle-tab--a ctive'); loginTab.setAttribute('aria-selected', 'false');
+                        signupTab.classList.add('auth-toggle- tab--active'); signupTab.setAttribute('aria-selected', 'true');
+                    } else {
+                                    pill.setAttribute(' data-a                e', 'login');
+                                    signupT                lassList.remove('aut                ggle-tab--active'); signupTab.setAttribute('aria-selected', 'false            ');            
+                        log inTab.                sList.add('auth-togg                ab--active'); loginTa                tAttribute('aria-sele                ', 'true');
+                    }
+                }
+                            setActive(page === 'signtmlgnup' : 'login');
+                loginTab.onclick = function (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    setActive('login');
+                    setTimeout(() => { window.location.assign('login.html'); }, 300);
+                };
+                signupTab.onclick = function (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    setActive('signup');
+                    setTimeout(() => { window.location.assign('signup.html'); }, 700);
+                };
+            })();
+        });
+    </script>
+</body>
+
+</html>

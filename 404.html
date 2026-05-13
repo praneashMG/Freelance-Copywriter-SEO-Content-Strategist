@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Page not found - WordCraft. The copywriting resource you're looking for doesn't exist or has been moved.">
+    <link rel="icon" href="/assets/fav.jpg" type="image/jpeg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <title>404 - Page Not Found | WordCraft</title>
+
+    <style>
+        /* ================================
+        🟣 PURPLE + SLATE DESIGN SYSTEM
+        ================================ */
+
+        /* ---------- LIGHT MODE ---------- */
+        :root,
+        html[data-theme='light'] {
+            --color-background: #F8FAFC;
+            --color-surface: #FFFFFF;
+            --color-elevated: #F1F5F9;
+            --color-primary-text: #0F172A;
+            --color-secondary-text: #475569;
+            --color-accent: #1E293B;
+            --color-accent-light: #7C3AED;
+            --color-border: #E2E8F0;
+            --color-hover: #EEF2F7;
+        }
+
+        /* ---------- DARK MODE ---------- */
+        html[data-theme='dark'] {
+            --color-background: #0B1120;
+            --color-surface: #0F172A;
+            --color-elevated: #1E293B;
+            --color-primary-text: #E5E7EB;
+            --color-secondary-text: #94A3B8;
+            --color-accent: #334155;
+            --color-accent-light: #8B5CF6;
+            --color-border: #1E293B;
+            --color-hover: #1E293B;
+        }
+        
+        body {
+            background-color: var(--color-background);
+            color: var(--color-primary-text);
+            font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .text-accent-light { color: var(--color-accent-light); }
+        .text-primary-text { color: var(--color-primary-text); }
+        .text-secondary-text { color: var(--color-secondary-text); }
+        .bg-background { background-color: var(--color-background); }
+        .bg-surface { background-color: var(--color-surface); }
+        .border-border { border-color: var(--color-border); }
+        .bg-hover { background-color: var(--color-hover); }
+
+        /* Floating animation for 404 number */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        .float-animation {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { opacity: 0.4; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.05); }
+        }
+        .glow-bg {
+            animation: pulse-glow 3s ease-in-out infinite;
+        }
+
+        /* Theme toggle button */
+        .theme-toggle-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background-color: var(--color-surface);
+            border: 1px solid var(--color-border);
+            color: var(--color-primary-text);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .theme-toggle-btn:hover {
+            background-color: var(--color-accent-light);
+            color: white;
+            transform: scale(1.05);
+        }
+        .dark-icon, .light-icon {
+            width: 24px;
+            height: 24px;
+        }
+        .hidden-icon { display: none; }
+
+        /* RTL Support */
+        html[dir="rtl"] .theme-toggle-btn {
+            right: auto;
+            left: 30px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Theme Toggle Button (Floating) -->
+    <button id="theme-toggle-btn" class="theme-toggle-btn" aria-label="Toggle theme">
+        <svg class="light-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+        </svg>
+        <svg class="dark-icon hidden-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+        </svg>
+    </button>
+
+    <!-- Main 404 Content -->
+    <div class="container mx-auto px-6 py-12 max-w-6xl">
+        
+        <!-- Logo / Brand -->
+        <div class="text-center mb-10">
+            <a href="index.html" class="inline-block">
+                <h1 class="text-5xl md:text-6xl font-serif font-extrabold tracking-tight text-accent-light">
+                    WordCraft
+                </h1>
+            </a>
+            <div class="w-20 h-1 bg-accent-light mx-auto mt-4 rounded-full opacity-60"></div>
+        </div>
+
+        <!-- 404 Illustration Area -->
+        <div class="relative flex flex-col items-center justify-center text-center">
+            
+            <!-- Background Glow Effect -->
+            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full bg-accent-light opacity-10 blur-3xl glow-bg pointer-events-none"></div>
+            
+            <!-- Big 404 Number -->
+            <div class="float-animation relative z-10">
+                <span class="text-[160px] md:text-[220px] lg:text-[280px] font-black leading-none tracking-tighter" 
+                      style="background: linear-gradient(135deg, var(--color-accent-light) 0%, var(--color-accent) 100%); 
+                             -webkit-background-clip: text; 
+                             background-clip: text; 
+                             color: transparent;">
+                    404
+                </span>
+            </div>
+
+            <!-- Error Message -->
+            <div class="mt-4 md:mt-6 relative z-10">
+                <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-primary-text mb-4">
+                    Oops! Page Not Found
+                </h2>
+                <div class="w-24 h-0.5 bg-accent-light mx-auto mb-6 opacity-50"></div>
+                <p class="text-secondary-text text-base md:text-lg max-w-md mx-auto">
+                    The page you're looking for might have been moved, deleted, or never existed. 
+                    But don't worry — great content is just a click away.
+                </p>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center relative z-10">
+             
+                  <a href="index.html" 
+                   class="px-8 py-3.5 bg-surface text-primary-text border border-border font-semibold rounded-xl hover:bg-hover transition-all duration-300 text-center">
+                    <i class="fas fa-envelope mr-2"></i> Back to Home
+                </a>
+                <a href="contact.html" 
+                   class="px-8 py-3.5 bg-surface text-primary-text border border-border font-semibold rounded-xl hover:bg-hover transition-all duration-300 text-center">
+                    <i class="fas fa-envelope mr-2"></i> Contact Support
+                </a>
+            </div>
+
+            <!-- Quick Links Row -->
+            <div class="mt-12 pt-8 border-t border-border w-full max-w-2xl mx-auto">
+                <p class="text-secondary-text text-sm mb-4">You might be looking for:</p>
+                <div class="flex flex-wrap gap-3 justify-center">
+                    <a href="service.html" class="text-primary-text hover:text-accent-light transition-colors text-sm px-3 py-1.5 rounded-full bg-hover">Services</a>
+                    <a href="portfolio.html" class="text-primary-text hover:text-accent-light transition-colors text-sm px-3 py-1.5 rounded-full bg-hover">Portfolio</a>
+                    <a href="blog.html" class="text-primary-text hover:text-accent-light transition-colors text-sm px-3 py-1.5 rounded-full bg-hover">Blog</a>
+                    <a href="about.html" class="text-primary-text hover:text-accent-light transition-colors text-sm px-3 py-1.5 rounded-full bg-hover">About</a>
+                    <a href="resources.html" class="text-primary-text hover:text-accent-light transition-colors text-sm px-3 py-1.5 rounded-full bg-hover">Resources</a>
+                    <a href="casestudy.html" class="text-primary-text hover:text-accent-light transition-colors text-sm px-3 py-1.5 rounded-full bg-hover">Case Studies</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Search Suggestion -->
+        <div class="mt-16 text-center relative z-10">
+            <p class="text-secondary-text text-sm">
+                <i class="fas fa-search mr-1"></i> Need help finding something? 
+                <a href="contact.html" class="text-accent-light hover:underline font-medium">Let me guide you</a>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            // Initialize theme from localStorage
+            const html = document.documentElement;
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            
+            function applyTheme(theme) {
+                html.setAttribute('data-theme', theme);
+                const lightIcons = document.querySelectorAll('.light-icon');
+                const darkIcons = document.querySelectorAll('.dark-icon');
+                
+                lightIcons.forEach(icon => {
+                    if (theme === 'dark') icon.classList.add('hidden-icon');
+                    else icon.classList.remove('hidden-icon');
+                });
+                darkIcons.forEach(icon => {
+                    if (theme === 'light') icon.classList.add('hidden-icon');
+                    else icon.classList.remove('hidden-icon');
+                });
+            }
+            
+            applyTheme(savedTheme);
+            
+            // Theme toggle button
+            const themeBtn = document.getElementById('theme-toggle-btn');
+            if (themeBtn) {
+                themeBtn.addEventListener('click', () => {
+                    const current = html.getAttribute('data-theme');
+                    const next = current === 'light' ? 'dark' : 'light';
+                    localStorage.setItem('theme', next);
+                    applyTheme(next);
+                });
+            }
+            
+            // RTL language toggle (optional - respects browser or saved preference)
+            const savedLang = localStorage.getItem('language');
+            if (savedLang === 'ar') {
+                html.setAttribute('dir', 'rtl');
+            } else if (!savedLang) {
+                // Check browser language
+                const browserLang = navigator.language || navigator.userLanguage;
+                if (browserLang && browserLang.startsWith('ar')) {
+                    html.setAttribute('dir', 'rtl');
+                    localStorage.setItem('language', 'ar');
+                } else {
+                    html.setAttribute('dir', 'ltr');
+                }
+            } else {
+                html.setAttribute('dir', savedLang === 'ar' ? 'rtl' : 'ltr');
+            }
+        })();
+    </script>
+</body>
+</html>

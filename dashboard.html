@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/assets/fav.jpg" type="image/jpeg">
+    <!-- Tailwind CSS & Font Awesome -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <title>WordCraft | Admin Control Panel</title>
+    <style>
+        /* ================================
+           🟣 PURPLE + SLATE DESIGN SYSTEM (Matching index.html)
+        ================================ */
+        :root, html[data-theme='light'] {
+            --color-background: #F8FAFC;
+            --color-surface: #FFFFFF;
+            --color-elevated: #F1F5F9;
+            --color-primary-text: #0F172A;
+            --color-secondary-text: #475569;
+            --color-accent: #1E293B;
+            --color-accent-light: #7C3AED;
+            --color-border: #E2E8F0;
+            --color-hover: #EEF2F7;
+            --color-footer-bg: #1E293B;
+            --color-footer-text: #E2E8F0;
+            --color-card-bg: #FFFFFF;
+            --color-sidebar-bg: #F8FAFC;
+        }
+
+        html[data-theme='dark'] {
+            --color-background: #0B1120;
+            --color-surface: #0F172A;
+            --color-elevated: #1E293B;
+            --color-primary-text: #E5E7EB;
+            --color-secondary-text: #94A3B8;
+            --color-accent: #334155;
+            --color-accent-light: #8B5CF6;
+            --color-border: #1E293B;
+            --color-hover: #1E293B;
+            --color-footer-bg: #020617;
+            --color-footer-text: #CBD5F5;
+            --color-card-bg: #0F172A;
+            --color-sidebar-bg: #0B1120;
+        }
+
+        body {
+            background-color: var(--color-background);
+            color: var(--color-primary-text);
+            font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+            overflow-x: hidden;
+        }
+
+        /* Utility Classes */
+        .text-primary-text { color: var(--color-primary-text); }
+        .text-secondary-text { color: var(--color-secondary-text); }
+        .text-accent { color: var(--color-accent); }
+        .text-accent-light { color: var(--color-accent-light); }
+        .bg-background { background-color: var(--color-background); }
+        .bg-surface { background-color: var(--color-surface); }
+        .bg-hover { background-color: var(--color-hover); }
+        .border-border { border-color: var(--color-border); }
+        .card-bg { background-color: var(--color-card-bg); }
+        .bg-sidebar { background-color: var(--color-sidebar-bg); }
+
+        /* Premium Gradient (Matches index.html hero accents) */
+        .bg-premium-gradient {
+            background: linear-gradient(135deg, #7C3AED 0%, #1E293B 100%);
+        }
+
+        /* Dashboard Cards */
+        .dashboard-card {
+            background-color: var(--color-card-bg);
+            border: 1px solid var(--color-border);
+            border-radius: 1.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(124, 58, 237, 0.08);
+        }
+        .dashboard-card:hover {
+            border-color: var(--color-accent-light);
+            box-shadow: 0 12px 28px -12px rgba(124, 58, 237, 0.2);
+        }
+
+        /* Status Pulse */
+        .status-pulse {
+            width: 10px;
+            height: 10px;
+            background-color: #10B981;
+            border-radius: 50%;
+            box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.5);
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            70% { box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+        }
+
+        /* Sidebar Navigation (Matches index.html nav-link style) */
+        .sidebar-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.875rem 1rem;
+            border-radius: 1rem;
+            color: var(--color-secondary-text);
+            transition: all 0.2s ease;
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+            cursor: pointer;
+        }
+        .sidebar-link:hover,
+        .sidebar-link.active {
+            background: linear-gradient(135deg, #7C3AED 0%, #1E293B 100%);
+            color: white;
+        }
+        .sidebar-link:hover i,
+        .sidebar-link.active i {
+            color: white;
+        }
+        .sidebar-link.logout:hover {
+            background: linear-gradient(135deg, #DC2626 0%, #991B1B 100%);
+        }
+
+        /* RTL Support */
+        html[dir="rtl"] .sidebar-link {
+            flex-direction: row-reverse;
+        }
+        html[dir="rtl"] .ml-auto {
+            margin-right: auto;
+            margin-left: 0;
+        }
+
+        /* Scroll Reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Mobile Overlay */
+        #mobile-overlay {
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            position: fixed;
+            inset: 0;
+            z-index: 55;
+        }
+        #mobile-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* Buttons */
+        .btn-primary {
+            background: linear-gradient(135deg, #7C3AED 0%, #1E293B 100%);
+            color: white;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .btn-primary:hover {
+            opacity: 0.88;
+            transform: scale(1.02);
+            box-shadow: 0 6px 18px rgba(124, 58, 237, 0.3);
+        }
+        .btn-outline {
+            background: transparent;
+            color: var(--color-accent-light);
+            border: 2px solid var(--color-accent-light);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .btn-outline:hover {
+            background: var(--color-accent-light);
+            color: white;
+        }
+
+        /* Admin Badge */
+        .admin-badge {
+            background: rgba(124, 58, 237, 0.15);
+            border-radius: 2rem;
+            padding: 0.25rem 0.75rem;
+            font-size: 0.7rem;
+            font-weight: bold;
+        }
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            line-height: 1;
+        }
+        html[data-theme='dark'] .stat-number { color: var(--color-accent-light); }
+
+        /* Table styles */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .data-table th, .data-table td {
+            padding: 1rem 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid var(--color-border);
+        }
+        .data-table th {
+            font-weight: 600;
+            color: var(--color-secondary-text);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+    </style>
+</head>
+<body class="antialiased flex flex-col min-h-screen bg-background">
+
+    <!-- TOP NAVIGATION BAR (Identical to index.html structure) -->
+    <header class="sticky top-0 z-50 transition-colors duration-300 shadow-xl border-b border-border bg-background" id="main-header">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between h-[70px]">
+            <!-- Logo (Matches index.html) -->
+            <div class="flex items-center gap-4">
+                <button id="mobile-menu-toggle" class="lg:hidden p-2 rounded-xl hover:bg-hover transition">
+                    <svg class="w-6 h-6 text-primary-text" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+                <a href="index.html" class="text-3xl font-serif font-extrabold tracking-tight text-accent-light">WordCraft</a>
+                <span class="admin-badge hidden sm:inline-block ml-2"><i class="fas fa-shield-alt mr-1"></i> Admin Portal</span>
+            </div>
+
+            <!-- Right Utilities (Theme + RTL + Profile) -->
+            <div class="flex items-center gap-3 sm:gap-4">
+                <button id="lang-toggle" class="p-2 rounded-full hover:bg-hover transition" title="Toggle RTL/LTR">
+                    <svg class="w-5 h-5 text-primary-text" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-width="2" d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
+                    </svg>
+                </button>
+                <button id="theme-toggle" class="p-2 rounded-full hover:bg-hover transition">
+                    <svg class="w-5 h-5 light-icon text-primary-text" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                    </svg>
+                    <svg class="w-5 h-5 dark-icon hidden text-primary-text" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                    </svg>
+                </button>
+                <div class="flex items-center gap-2 pl-3 border-l border-border">
+                    <div class="relative">
+                        <div class="w-9 h-9 rounded-full bg-premium-gradient flex items-center justify-center text-white font-bold">AD</div>
+                        <span class="absolute bottom-0 right-0 status-pulse"></span>
+                    </div>
+                    <div class="hidden sm:block">
+                        <p class="text-sm font-medium text-primary-text">Alex Morgan</p>
+                        <p class="text-xs text-secondary-text">Super Admin</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- MOBILE OVERLAY -->
+    <div id="mobile-overlay" class="lg:hidden"></div>
+
+    <!-- MAIN DASHBOARD LAYOUT -->
+    <main class="w-full px-4 sm:px-6 lg:px-8 py-6 flex-grow">
+        <div class="flex flex-col lg:flex-row gap-6">
+            <!-- SIDEBAR (Admin Navigation) -->
+            <aside id="sidebar" class="fixed lg:sticky top-0 lg:top-24 left-0 h-full lg:h-auto w-full max-w-full lg:w-80 z-[60] lg:z-10 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 bg-sidebar lg:bg-transparent">
+                <div class="dashboard-card p-5 h-full lg:h-auto overflow-hidden">
+                    <!-- Mobile Sidebar Header -->
+                    <div class="flex lg:hidden justify-between items-center mb-6">
+                        <span class="font-bold text-accent-light">Admin Menu</span>
+                        <button id="close-sidebar" class="p-2 hover:bg-hover rounded-lg">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                        </button>
+                    </div>
+                    <!-- Admin Info -->
+                    <div class="flex items-center gap-3 pb-5 mb-4 border-b border-border">
+                        <div class="w-12 h-12 rounded-full bg-premium-gradient flex items-center justify-center text-white font-bold text-xl">AM</div>
+                        <div>
+                            <p class="font-serif font-bold text-primary-text">Alex Morgan</p>
+                            <p class="text-xs text-secondary-text">admin@elevate.com</p>
+                            <p class="text-xs text-accent-light mt-1"><i class="fas fa-crown"></i> Root Access</p>
+                        </div>
+                    </div>
+                    <!-- Navigation Links -->
+                    <nav class="flex flex-col gap-1">
+                        <p class="text-xs uppercase tracking-wider text-secondary-text font-bold px-3 mb-2">Control Hub</p>
+                        <a href="#" data-section="dashboard" class="sidebar-link active"><i class="fas fa-tachometer-alt w-5"></i><span>Analytics Overview</span></a>
+                        <a href="#" data-section="users" class="sidebar-link"><i class="fas fa-users w-5"></i><span>User Management</span><span class="ml-auto bg-accent-light text-white text-xs px-2 py-0.5 rounded-full">158</span></a>
+                        <a href="#" data-section="bookings" class="sidebar-link"><i class="fas fa-calendar-check w-5"></i><span>All Enrollments</span></a>
+                        <a href="#" data-section="services" class="sidebar-link"><i class="fas fa-chalkboard w-5"></i><span>Course Catalog</span></a>
+                        <a href="#" data-section="reports" class="sidebar-link"><i class="fas fa-chart-pie w-5"></i><span>Revenue Reports</span></a>
+                        <a href="#" data-section="support" class="sidebar-link"><i class="fas fa-headset w-5"></i><span>Support Tickets</span><span class="ml-auto bg-red-500 text-white text-xs px-2 py-0.5 rounded-full">3</span></a>
+                        <a href="#" data-section="settings" class="sidebar-link"><i class="fas fa-cog w-5"></i><span>System Settings</span></a>
+                        <a href="#" data-section="logout" class="sidebar-link logout mt-4"><i class="fas fa-sign-out-alt w-5"></i><span>Logout</span></a>
+                    </nav>
+                </div>
+            </aside>
+
+            <!-- MAIN CONTENT AREA -->
+            <div class="flex-1 min-w-0 space-y-6">
+                <!-- WELCOME BANNER (Purple/Slate gradient like index) -->
+                <div class="relative overflow-hidden rounded-3xl bg-premium-gradient p-8 text-white reveal">
+                    <div class="absolute top-0 right-0 p-6 opacity-10"><i class="fas fa-chart-line text-7xl rotate-12"></i></div>
+                    <div class="relative z-10"><h1 class="text-3xl md:text-4xl font-serif font-bold">Admin Dashboard 🌟</h1><p class="text-white/80 mt-2 max-w-lg">Monitor institute performance, manage students, and oversee academic operations in real-time.</p></div>
+                </div>
+
+                <!-- DASHBOARD SECTION (Analytics) -->
+                <div id="dashboard" class="admin-section">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-6">
+                        <div class="dashboard-card p-5 reveal"><div class="flex justify-between items-center"><div><p class="text-secondary-text text-sm">Total Students</p><p class="stat-number text-accent-light mt-1">2,847</p></div><div class="w-12 h-12 rounded-full bg-accent-light/10 flex items-center justify-center text-accent-light"><i class="fas fa-user-graduate text-xl"></i></div></div><p class="text-xs text-secondary-text mt-3">+18% this semester</p></div>
+                        <div class="dashboard-card p-5 reveal"><div class="flex justify-between items-center"><div><p class="text-secondary-text text-sm">Active Enrollments</p><p class="stat-number text-accent-light mt-1">1,243</p></div><div class="w-12 h-12 rounded-full bg-accent-light/10 flex items-center justify-center text-accent-light"><i class="fas fa-book-open text-xl"></i></div></div><p class="text-xs text-secondary-text mt-3">+12% vs last month</p></div>
+                        <div class="dashboard-card p-5 reveal"><div class="flex justify-between items-center"><div><p class="text-secondary-text text-sm">Revenue (YTD)</p><p class="stat-number text-accent-light mt-1">$248K</p></div><div class="w-12 h-12 rounded-full bg-accent-light/10 flex items-center justify-center text-accent-light"><i class="fas fa-chart-line text-xl"></i></div></div><p class="text-xs text-secondary-text mt-3">Target: $300K</p></div>
+                        <div class="dashboard-card p-5 reveal"><div class="flex justify-between items-center"><div><p class="text-secondary-text text-sm">Active Courses</p><p class="stat-number text-accent-light mt-1">24</p></div><div class="w-12 h-12 rounded-full bg-accent-light/10 flex items-center justify-center text-accent-light"><i class="fas fa-layer-group text-xl"></i></div></div><p class="text-xs text-secondary-text mt-3">Across 7 categories</p></div>
+                    </div>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <div class="dashboard-card p-6 reveal"><h2 class="text-xl font-serif font-bold mb-4">Recent Enrollments</h2><div class="space-y-3"><div class="flex justify-between items-center py-2 border-b border-border"><span>Riya Sharma</span><span>IIT-JEE Advanced</span><span class="text-xs text-green-600">Confirmed</span></div><div class="flex justify-between items-center py-2 border-b border-border"><span>Arjun Mehta</span><span>NEET (Medical)</span><span class="text-xs text-green-600">Confirmed</span></div><div class="flex justify-between items-center py-2 border-b border-border"><span>Priya Kapoor</span><span>Foundation (Class 10)</span><span class="text-xs text-amber-600">Pending</span></div></div><button class="mt-4 text-accent-light text-sm font-bold">View all →</button></div>
+                        <div class="dashboard-card p-6 reveal"><h2 class="text-xl font-serif font-bold mb-4">Pending Approvals</h2><div class="space-y-3"><div class="flex justify-between items-center"><span>New Course Request: Data Science</span><span class="text-xs bg-amber-100 px-2 py-1 rounded-full">Urgent</span></div><div class="flex justify-between items-center"><span>8 New Instructor Applications</span><button class="text-xs text-accent-light">Review</button></div><div class="flex justify-between items-center"><span>Scholarship Request #221</span><button class="text-xs text-accent-light">Process</button></div></div></div>
+                    </div>
+                </div>
+
+                <!-- USER MANAGEMENT -->
+                <div id="users" class="admin-section hidden"><div class="dashboard-card p-6 reveal"><div class="flex justify-between items-center mb-6 flex-wrap gap-3"><h2 class="text-2xl font-serif font-bold text-primary-text">Registered Students & Staff</h2><button class="btn-primary px-4 py-2 rounded-xl text-sm"><i class="fas fa-plus mr-1"></i> Add New User</button></div><div class="overflow-x-auto"><table class="data-table"><thead><tr><th>Name</th><th>Email</th><th>Role</th><th>Enrollments</th><th>Status</th></tr></thead><tbody><tr><td class="font-medium">Rahul Verma</td><td>rahul@elevate.com</td><td>Student</td><td>3</td><td><span class="text-green-600">● Active</span></td></tr><tr><td class="font-medium">Dr. Neha Gupta</td><td>neha@elevate.com</td><td>Faculty</td><td>5 Courses</td><td><span class="text-green-600">● Active</span></td></tr><tr><td class="font-medium">Anjali Singh</td><td>anjali@elevate.com</td><td>Student</td><td>2</td><td><span class="text-amber-600">● Suspended</span></td></tr><tr><td class="font-medium">Prof. Amit Sharma</td><td>amit@elevate.com</td><td>Mentor</td><td>8 Batches</td><td><span class="text-green-600">● Active</span></td></tr></tbody></table></div></div></div>
+
+                <!-- ENROLLMENTS (Bookings) -->
+                <div id="bookings" class="admin-section hidden"><div class="dashboard-card p-6 reveal"><h2 class="text-2xl font-serif font-bold mb-6 text-primary-text">Student Enrollments</h2><div class="overflow-x-auto"><table class="data-table"><thead><tr><th>Course</th><th>Student</th><th>Enroll Date</th><th>Amount</th><th>Status</th></tr></thead><tbody><tr><td>IIT-JEE Advanced</td><td>Riya Sharma</td><td>Apr 10, 2026</td><td>$899</td><td><span class="bg-green-100 px-2 py-1 rounded-full text-xs">Active</span></td></tr><tr><td>NEET Intensive</td><td>Arjun Mehta</td><td>Apr 12, 2026</td><td>$999</td><td><span class="bg-blue-100 px-2 py-1 rounded-full text-xs">In Progress</span></td></tr><tr><td>Foundation Math</td><td>Kabir Das</td><td>Apr 5, 2026</td><td>$499</td><td><span class="bg-green-100 px-2 py-1 rounded-full text-xs">Active</span></td></tr></tbody></table></div></div></div>
+
+                <!-- COURSE CATALOG (Services) -->
+                <div id="services" class="admin-section hidden"><div class="dashboard-card p-6 reveal"><h2 class="text-2xl font-serif font-bold mb-6">Course Catalog Management</h2><div class="grid md:grid-cols-3 gap-5"><div class="border border-border p-5 rounded-2xl"><i class="fas fa-flask text-accent-light text-3xl mb-3 block"></i><h3 class="font-bold text-xl">IIT-JEE</h3><p class="text-sm text-secondary-text">Comprehensive + Test Series</p><p class="font-bold mt-2 text-accent-light">$899/year</p><button class="text-xs text-accent-light mt-3 font-semibold">Edit Pricing</button></div><div class="border border-border p-5 rounded-2xl"><i class="fas fa-heartbeat text-accent-light text-3xl mb-3 block"></i><h3 class="font-bold text-xl">NEET (Medical)</h3><p class="text-sm text-secondary-text">Biology + Mock Exams</p><p class="font-bold mt-2 text-accent-light">$999/year</p><button class="text-xs text-accent-light mt-3 font-semibold">Manage</button></div><div class="border border-border p-5 rounded-2xl"><i class="fas fa-calculator text-accent-light text-3xl mb-3 block"></i><h3 class="font-bold text-xl">Foundation 8-10</h3><p class="text-sm text-secondary-text">NTSE/Olympiad prep</p><p class="font-bold mt-2 text-accent-light">$499/year</p><button class="text-xs text-accent-light mt-3 font-semibold">Configure</button></div></div><button class="mt-6 btn-outline py-2 px-4 rounded-xl text-sm w-full">+ Add New Course</button></div></div>
+
+                <!-- REVENUE REPORTS -->
+                <div id="reports" class="admin-section hidden"><div class="dashboard-card p-6 reveal text-center"><i class="fas fa-chart-simple text-6xl text-accent-light/50 mb-5 block"></i><h2 class="text-2xl font-serif font-bold">Financial Summary</h2><p class="text-secondary-text mt-3 text-lg">Total Revenue (2026): $428,500</p><p class="text-secondary-text">Projected Q3: $185,000</p><button class="btn-primary mt-6 px-6 py-2 rounded-xl text-sm">Export Full Report <i class="fas fa-download ml-1"></i></button></div></div>
+
+                <!-- SUPPORT TICKETS -->
+                <div id="support" class="admin-section hidden"><div class="dashboard-card p-6 reveal"><h2 class="text-2xl font-serif font-bold mb-5">Open Support Tickets</h2><div class="space-y-3"><div class="p-4 bg-hover rounded-xl flex justify-between items-center flex-wrap gap-2"><span><i class="fas fa-envelope text-accent-light mr-2"></i> Payment failed - #T201</span><button class="text-xs text-accent-light font-semibold">Resolve</button></div><div class="p-4 bg-hover rounded-xl flex justify-between items-center flex-wrap gap-2"><span><i class="fas fa-calendar text-accent-light mr-2"></i> Batch reschedule request - #T089</span><button class="text-xs text-accent-light font-semibold">Assign</button></div><div class="p-4 bg-hover rounded-xl flex justify-between items-center flex-wrap gap-2"><span><i class="fas fa-question-circle text-accent-light mr-2"></i> Doubt session access - #T045</span><button class="text-xs text-accent-light font-semibold">Respond</button></div></div></div></div>
+
+                <!-- SYSTEM SETTINGS -->
+                <div id="settings" class="admin-section hidden"><div class="dashboard-card p-6 reveal"><h2 class="text-2xl font-serif font-bold mb-5">Platform Configuration</h2><div class="space-y-5"><div class="flex justify-between items-center border-b pb-3"><span class="font-medium">Maintenance Mode</span><button class="btn-outline text-xs px-3 py-1 rounded-full">Enable</button></div><div class="flex justify-between items-center border-b pb-3"><span class="font-medium">Email Notifications</span><button class="btn-outline text-xs px-3 py-1 rounded-full">Configure</button></div><div class="flex justify-between items-center"><span class="font-medium">Backup System</span><span class="text-accent-light text-sm">Last backup: Today 3:00 AM</span></div></div></div></div>
+
+                <!-- LOGOUT SECTION -->
+                <div id="logout" class="admin-section hidden"><div class="dashboard-card p-10 reveal text-center max-w-lg mx-auto"><div class="w-20 h-20 mx-auto bg-accent-light/10 rounded-full flex items-center justify-center text-accent-light text-3xl mb-6"><i class="fas fa-sign-out-alt"></i></div><h2 class="text-2xl font-serif font-bold">Exit Admin Panel</h2><p class="text-secondary-text mt-3">You will be redirected to the main site.</p><div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center"><button onclick="window.location.href='index.html'" class="px-8 py-3 bg-red-500 text-white rounded-xl hover:bg-red-600 transition text-sm font-bold">Sign Out</button><button onclick="activateSection('dashboard')" class="px-8 py-3 border border-border rounded-xl hover:bg-hover transition text-sm font-bold">Stay</button></div></div></div>
+
+                <!-- STATUS BANNER -->
+                <div class="bg-premium-gradient rounded-2xl p-6 text-white flex items-center justify-between reveal"><div class="flex items-center gap-4"><span class="w-3 h-3 bg-white rounded-full animate-ping"></span><div><p class="font-bold">Admin Session Active</p><p class="text-sm text-white/80">Full administrative privileges enabled</p></div></div><div class="text-sm font-bold bg-white/20 px-4 py-2 rounded-xl">System Health: 99%</div></div>
+
+                <!-- FOOTER (matches index.html style) -->
+                <footer class="text-center text-xs text-secondary-text border-t border-border pt-8 pb-4"><p>© 2026 WordCraft. Admin Control Panel.</p><div class="flex justify-center gap-6 mt-4"><a href="#" class="hover:text-accent-light transition">System Status</a><a href="#" class="hover:text-accent-light transition">Audit Logs</a><a href="contact.html" class="hover:text-accent-light transition">Support</a></div></footer>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        (function(){
+            const html = document.documentElement;
+            // Theme handling (identical to index)
+            const applyTheme = (theme) => {
+                html.setAttribute('data-theme', theme);
+                localStorage.setItem('theme', theme);
+                document.querySelectorAll('.light-icon').forEach(i => i.classList.toggle('hidden', theme === 'dark'));
+                document.querySelectorAll('.dark-icon').forEach(i => i.classList.toggle('hidden', theme === 'light'));
+            };
+            applyTheme(localStorage.getItem('theme') || 'light');
+            const themeBtn = document.getElementById('theme-toggle');
+            if(themeBtn) themeBtn.addEventListener('click', () => applyTheme(html.getAttribute('data-theme') === 'light' ? 'dark' : 'light'));
+
+            // RTL Toggle
+            const setDirection = (dir) => { html.setAttribute('dir', dir); localStorage.setItem('language', dir === 'rtl' ? 'ar' : 'en'); };
+            setDirection(localStorage.getItem('language') === 'ar' ? 'rtl' : 'ltr');
+            const langBtn = document.getElementById('lang-toggle');
+            if(langBtn) langBtn.addEventListener('click', () => setDirection(html.getAttribute('dir') === 'ltr' ? 'rtl' : 'ltr'));
+
+            // Mobile menu
+            const menuToggle = document.getElementById('mobile-menu-toggle');
+            const closeSidebar = document.getElementById('close-sidebar');
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('mobile-overlay');
+            function toggleMobileMenu(open){
+                if(sidebar) sidebar.classList.toggle('-translate-x-full', !open);
+                if(overlay) overlay.classList.toggle('active', open);
+                document.body.style.overflow = open ? 'hidden' : '';
+            }
+            if(menuToggle) menuToggle.addEventListener('click', () => toggleMobileMenu(true));
+            if(closeSidebar) closeSidebar.addEventListener('click', () => toggleMobileMenu(false));
+            if(overlay) overlay.addEventListener('click', () => toggleMobileMenu(false));
+
+            // Section Navigation
+            const sections = ['dashboard', 'users', 'bookings', 'services', 'reports', 'support', 'settings', 'logout'];
+            const links = document.querySelectorAll('.sidebar-link');
+            window.activateSection = function(sectionId){
+                sections.forEach(id => { const el = document.getElementById(id); if(el) el.classList.add('hidden'); });
+                const activeSec = document.getElementById(sectionId);
+                if(activeSec) activeSec.classList.remove('hidden');
+                links.forEach(link => {
+                    link.classList.remove('active');
+                    if(link.dataset.section === sectionId) link.classList.add('active');
+                });
+                if(window.innerWidth < 1024) toggleMobileMenu(false);
+            };
+            links.forEach(link => {
+                link.addEventListener('click', (e) => { e.preventDefault(); if(link.dataset.section) activateSection(link.dataset.section); });
+            });
+            // Ensure dashboard visible on load
+            activateSection('dashboard');
+
+            // Scroll Reveal
+            const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('active'); }); }, { threshold: 0.1 });
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        })();
+    </script>
+</body>
+</html>
+
+
+
+
+
+

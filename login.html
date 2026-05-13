@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/assets/fav.jpg" type="image/jpeg">
+    <title>Login | WordCraft</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        /* ================================
+           🟣 PURPLE + SLATE SYSTEM (exact match to index.html)
+        ================================ */
+        :root, html[data-theme='light'] {
+            --color-background: #F8FAFC;
+            --color-surface: #FFFFFF;
+            --color-elevated: #F1F5F9;
+            --color-primary-text: #0F172A;
+            --color-secondary-text: #475569;
+            --color-accent: #1E293B;
+            --color-accent-light: #7C3AED;
+            --color-border: #E2E8F0;
+            --color-hover: #EEF2F7;
+            --color-input-bg: #FFFFFF;
+        }
+
+        html[data-theme='dark'] {
+            --color-background: #0B1120;
+            --color-surface: #0F172A;
+            --color-elevated: #1E293B;
+            --color-primary-text: #E5E7EB;
+            --color-secondary-text: #94A3B8;
+            --color-accent: #334155;
+            --color-accent-light: #8B5CF6;
+            --color-border: #1E293B;
+            --color-hover: #1E293B;
+            --color-input-bg: #0F172A;
+        }
+
+        body {
+            background-color: var(--color-background);
+            color: var(--color-primary-text);
+            font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            padding: 1rem;
+        }
+
+        .auth-card {
+            background-color: var(--color-surface);
+            border: 1px solid var(--color-border);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        .input-field {
+            background-color: var(--color-input-bg);
+            border: 1px solid var(--color-border);
+            color: var(--color-primary-text);
+            transition: all 0.2s ease;
+        }
+        .input-field:focus {
+            outline: none;
+            border-color: var(--color-accent-light);
+            box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+        }
+
+        .btn-primary {
+            background-color: var(--color-accent);
+            transition: all 0.3s ease;
+            color: white;
+        }
+        .btn-primary:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+            box-shadow: 0 8px 20px -6px rgba(124, 58, 237, 0.4);
+        }
+        html[data-theme='dark'] .btn-primary {
+            background-color: var(--color-accent-light);
+            color: #000;
+        }
+
+        .text-accent {
+            color: var(--color-accent-light);
+        }
+
+        /* Floating Controls - matches index style */
+        .controls {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            display: flex;
+            gap: 0.75rem;
+            z-index: 50;
+        }
+
+        html[dir="rtl"] .controls {
+            right: auto;
+            left: 1rem;
+        }
+
+        .btn-control {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--color-primary-text);
+            transition: all 0.2s ease;
+            backdrop-filter: blur(4px);
+        }
+        .btn-control:hover {
+            border-color: var(--color-accent-light);
+            color: var(--color-accent-light);
+            transform: scale(1.05);
+        }
+
+        .checkbox-custom {
+            width: 1rem;
+            height: 1rem;
+            border-radius: 0.25rem;
+            border: 1px solid var(--color-border);
+            background: var(--color-input-bg);
+            cursor: pointer;
+            accent-color: var(--color-accent-light);
+        }
+
+        /* Left panel gradient and overlay - purple/slate vibe */
+        .left-panel-gradient {
+            background: linear-gradient(135deg, #1E293B 0%, #4C1D95 100%);
+        }
+        html[data-theme='dark'] .left-panel-gradient {
+            background: linear-gradient(135deg, #0B1120 0%, #2E1065 100%);
+        }
+
+        /* RTL support for icons */
+        html[dir="rtl"] .fa-arrow-right {
+            transform: rotate(180deg);
+            display: inline-block;
+        }
+
+        @media (max-width: 360px) {
+            body { padding: 0.5rem; }
+            .controls { top: 0.5rem; right: 0.5rem; gap: 0.4rem; }
+            .btn-control { width: 36px; height: 36px; }
+            .auth-card { border-radius: 14px; }
+            h3 { font-size: 1.5rem !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="controls">
+        <button onclick="toggleRTL()" class="btn-control" title="Toggle RTL / اللغة" aria-label="RTL Toggle">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
+            </svg>
+        </button>
+        <button onclick="toggleTheme()" class="btn-control" title="Toggle Dark Mode" aria-label="Theme Toggle">
+            <svg class="w-5 h-5 light-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+            </svg>
+            <svg class="w-5 h-5 dark-icon hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+            </svg>
+        </button>
+    </div>
+
+    <div class="relative w-full max-w-5xl">
+        <div class="auth-card w-full flex flex-col md:flex-row rounded-2xl min-h-[520px] overflow-hidden shadow-2xl">
+
+            <!-- LEFT PANEL: WordCraft Brand Story  (updated content & colors) -->
+            <div class="hidden md:flex md:w-5/12 relative left-panel-gradient">
+                <img src="/assets/h1.jpeg" alt="Copywriter workspace creative desk" 
+                    class="absolute inset-0 w-full h-full object-cover opacity-20 mix-blend-overlay">
+                <div class="relative z-10 p-8 text-white flex flex-col items-center text-center justify-between h-full">
+                    <div class="flex flex-col items-center">
+                        <a href="index.html" class="text-3xl font-serif font-extrabold tracking-tight inline-block">
+                            <span style="color: #7C3AED;">WordCraft</span>
+                        </a>
+                        <div class="w-12 h-0.5 bg-[#7C3AED] my-4 rounded-full"></div>
+                        <h2 class="text-3xl font-serif font-bold leading-tight mt-2 mb-3">
+                            Words That <br><span style="color: #7C3AED;">Convert & Rank</span>
+                        </h2>
+                        <p class="text-white/80 text-sm leading-relaxed max-w-xs">
+                            Join a community of brands scaling with strategic storytelling, SEO intelligence, and conversion-focused copy.
+                        </p>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-md p-5 rounded-xl border border-white/20 mt-8">
+                        <div class="flex items-center gap-3">
+                            <i class="fas fa-pen-fancy text-[#7C3AED] text-xl"></i>
+                            <p class="italic text-xs leading-relaxed">“Every word is engineered to turn clicks into loyal customers.”</p>
+                        </div>
+                        <div class="mt-3 text-[10px] text-white/50">— Senior Copy Strategist, WordCraft</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT PANEL: LOGIN FORM (exact WordCraft branding) -->
+            <div class="w-full md:w-7/12 flex items-center justify-center p-4 sm:p-6 lg:p-12">
+                <div class="w-full max-w-sm">
+
+                    <a href="index.html" class="md:hidden text-3xl font-serif font-extrabold tracking-tight mb-6 text-center block">
+                        <span style="color: #7C3AED;">WordCraft</span>
+                    </a>
+
+                    <div class="mb-5 text-center">
+                        <h3 class="text-2xl sm:text-3xl font-serif font-bold mb-2 text-primary-text">
+                            Welcome Back
+                        </h3>
+                        <p class="text-sm text-secondary-text max-w-xs mx-auto">
+                            Access your dashboard, track content projects, and view performance analytics.
+                        </p>
+                    </div>
+
+                    <!-- Social Login Options (clean modern icons) -->
+                    <div class="flex justify-center gap-5 mb-6">
+                        <button class="w-11 h-11 rounded-full border border-border flex items-center justify-center hover:border-accent-light hover:scale-105 transition-all duration-200 bg-surface group">
+                            <svg class="w-5 h-5" viewBox="0 0 48 48">
+                                <path fill="#EA4335" d="M24 9.5c3.2 0 6.1 1.1 8.3 3.1l6.2-6.2C34.8 2.4 29.7 0 24 0 14.6 0 6.6 5.5 2.7 13.4l7.3 5.7C11.9 13.1 17.4 9.5 24 9.5z" />
+                                <path fill="#34A853" d="M46.1 24.5c0-1.7-.2-3.3-.5-4.9H24v9.3h12.4c-.5 2.9-2.1 5.4-4.5 7.1l6.9 5.4c4-3.7 6.3-9.1 6.3-16.9z" />
+                                <path fill="#4A90E2" d="M10 28.7c-.5-1.4-.8-2.9-.8-4.4s.3-3 .8-4.4l-7.3-5.7C1 17.1 0 20.4 0 24s1 6.9 2.7 9.8l7.3-5.7z" />
+                                <path fill="#FBBC05" d="M24 48c6.5 0 11.9-2.1 15.8-5.7l-6.9-5.4c-2 1.3-4.6 2.1-8.9 2.1-6.6 0-12.1-3.6-14.1-8.6l-7.3 5.7C6.6 42.5 14.6 48 24 48z" />
+                            </svg>
+                        </button>
+                        <button class="w-11 h-11 rounded-full border border-border flex items-center justify-center hover:border-accent-light hover:scale-105 transition-all duration-200 bg-surface">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M17.05 20.28c-.98.95-2.05.8-3.09.36-1.1-.46-2.11-.48-3.27 0-1.46.63-2.23.45-3.09-.36C3.25 15.97 3.91 9.48 8.2 9.23c1.24.07 2.1.68 2.83.73.73-.05 1.76-.76 3.13-.64 1.64.14 2.88.78 3.7 2.22-3.29 1.98-2.52 6.32.59 7.74-.6 1.33-1.34 2.6-2.4 3zM12.03 7.94c-.15-2.02 1.5-3.67 3.37-3.94.26 2.18-1.65 3.95-3.37 3.94z" />
+                            </svg>
+                        </button>
+                        <button class="w-11 h-11 rounded-full border border-border flex items-center justify-center hover:border-accent-light hover:scale-105 transition-all duration-200 bg-surface">
+                            <svg class="w-5 h-5 text-[#1877F2]" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M22 12a10 10 0 10-11.5 9.88v-7H8v-2.88h2.5V9.5c0-2.46 1.47-3.82 3.72-3.82 1.08 0 2.2.2 2.2.2v2.4h-1.24c-1.22 0-1.6.76-1.6 1.54v1.85H16l-.4 2.88h-2.18v7A10 10 0 0022 12z" />
+                            </svg>
+                        </button>
+                    </div>
+
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="flex-1 h-px bg-border"></div>
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-secondary-text">Or continue with</span>
+                        <div class="flex-1 h-px bg-border"></div>
+                    </div>
+
+                    <form action="#" method="POST" id="loginForm" class="space-y-5">
+                        <div>
+                            <label class="block text-[11px] font-bold uppercase tracking-wider mb-1.5 text-secondary-text">
+                                <i class="fa-regular fa-envelope mr-1 text-accent-light"></i> Email Address
+                            </label>
+                            <input type="email" required id="loginEmail"
+                                class="input-field w-full px-3 py-2.5 rounded-lg text-sm outline-none transition"
+                                placeholder="hello@yourbrand.com">
+                        </div>
+
+                        <div>
+                            <label class="block text-[11px] font-bold uppercase tracking-wider mb-1.5 text-secondary-text">
+                                <i class="fa-solid fa-key mr-1 text-accent-light"></i> Password
+                            </label>
+                            <div class="relative">
+                                <input type="password" required id="password"
+                                    class="input-field w-full px-3 py-2.5 rounded-lg text-sm outline-none pr-10 transition"
+                                    placeholder="••••••••">
+                                <button type="button" onclick="togglePasswordVisibility('password', this)"
+                                    class="absolute inset-y-0 right-0 pr-4 flex items-center text-secondary-text hover:text-accent-light transition">
+                                    <svg class="w-5 h-5 eye-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                    </svg>
+                                    <svg class="w-5 h-5 eye-slash-icon hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
+                                    </svg>
+                                </button>
+                            </div>
+
+                            <div class="flex justify-between items-center mt-4">
+                                <label class="flex items-center gap-2 cursor-pointer group">
+                                    <input type="checkbox" class="checkbox-custom">
+                                    <span class="text-xs text-secondary-text group-hover:text-accent-light transition">Remember me</span>
+                                </label>
+                                <a href="#" class="text-xs font-semibold text-accent-light hover:underline transition">Forgot password?</a>
+                            </div>
+                        </div>
+
+                        <button type="submit"
+                            class="btn-primary w-full py-2.5 rounded-lg font-bold text-sm shadow-lg mt-2 transition-all flex items-center justify-center gap-2 group">
+                            <span>Access Dashboard</span>
+                            <i class="fa-solid fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
+                        </button>
+                    </form>
+
+                    <div class="mt-8 text-center">
+                        <p class="text-xs text-secondary-text">
+                            Don't have an account? 
+                            <a href="signup.html" class="text-accent-light font-bold hover:underline transition ml-1">Join WordCraft →</a>
+                        </p>
+                        <div class="mt-4 flex justify-center gap-4 text-[11px] text-secondary-text/60">
+                            <a href="#" class="hover:text-accent-light transition">Privacy</a>
+                            <span>•</span>
+                            <a href="#" class="hover:text-accent-light transition">Content Policy</a>
+                            <span>•</span>
+                            <a href="#" class="hover:text-accent-light transition">FAQs</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Password visibility toggle
+        function togglePasswordVisibility(inputId, buttonEl) {
+            const input = document.getElementById(inputId);
+            const eyeIcon = buttonEl.querySelector('.eye-icon');
+            const eyeSlashIcon = buttonEl.querySelector('.eye-slash-icon');
+            if (input.type === 'password') {
+                input.type = 'text';
+                eyeIcon.classList.add('hidden');
+                eyeSlashIcon.classList.remove('hidden');
+            } else {
+                input.type = 'password';
+                eyeIcon.classList.remove('hidden');
+                eyeSlashIcon.classList.add('hidden');
+            }
+        }
+
+        // Theme Toggle (exactly as index.html)
+        function toggleTheme() {
+            const html = document.documentElement;
+            const current = html.getAttribute('data-theme');
+            const target = current === 'light' ? 'dark' : 'light';
+            html.setAttribute('data-theme', target);
+            localStorage.setItem('theme', target);
+            
+            const lightIcons = document.querySelectorAll('.light-icon');
+            const darkIcons = document.querySelectorAll('.dark-icon');
+            if (target === 'dark') {
+                lightIcons.forEach(icon => icon.classList.add('hidden'));
+                darkIcons.forEach(icon => icon.classList.remove('hidden'));
+            } else {
+                lightIcons.forEach(icon => icon.classList.remove('hidden'));
+                darkIcons.forEach(icon => icon.classList.add('hidden'));
+            }
+        }
+
+        // RTL Toggle
+        function toggleRTL() {
+            const html = document.documentElement;
+            const current = html.getAttribute('dir');
+            const target = current === 'ltr' ? 'rtl' : 'ltr';
+            html.setAttribute('dir', target);
+            localStorage.setItem('dir', target);
+        }
+
+        // Initialize from localStorage (theme + direction)
+        (function init() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            const html = document.documentElement;
+            html.setAttribute('data-theme', savedTheme);
+            
+            const lightIcons = document.querySelectorAll('.light-icon');
+            const darkIcons = document.querySelectorAll('.dark-icon');
+            if (savedTheme === 'dark') {
+                lightIcons.forEach(icon => icon.classList.add('hidden'));
+                darkIcons.forEach(icon => icon.classList.remove('hidden'));
+            } else {
+                lightIcons.forEach(icon => icon.classList.remove('hidden'));
+                darkIcons.forEach(icon => icon.classList.add('hidden'));
+            }
+            
+            const savedDir = localStorage.getItem('dir') || 'ltr';
+            html.setAttribute('dir', savedDir);
+        })();
+
+        // Handle login form submission (demo redirect to user dashboard - updated to WordCraft context)
+        document.getElementById('loginForm')?.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail')?.value;
+            if (email && email.trim() !== "") {
+                // Simple demo: store user session flag
+                localStorage.setItem('wordcraft_user_logged', 'true');
+                localStorage.setItem('wordcraft_user_email', email);
+                // Redirect to user dashboard (if exists) else back to homepage
+                window.location.href = 'userdash.html';
+            } else {
+                alert('Please enter your email address to continue.');
+            }
+        });
+    </script>
+</body>
+</html>
