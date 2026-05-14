@@ -1044,7 +1044,7 @@
                     </div>
                 </div>
             </div>
-            <div class="py-10 text-center text-gray-500 text-sm">� 2026 WordCraft. All rights reserved.</div>
+            <div class="py-10 text-center text-gray-500 text-sm">© 2026 WordCraft. All rights reserved.</div>
         </div>
     </footer>
 
@@ -1060,7 +1060,8 @@
             applyTheme(savedTheme);
 
             // --- Theme Logic ---
-            const themeToggles =           document.getElementById('theme-toggle'),
+            const themeToggles = [
+                document.getElementById('theme-toggle'),
                 document.getElementById('drawer-theme-toggle')
             ].filter(Boolean);
 
@@ -1085,10 +1086,11 @@
                 menuDrawer.classList.remove('pointer-events-none');
                 menuContent.classList.remove('translate-y-[-100%]');
                 menuBackdrop.classList.add('opacity-50', 'pointer-events-auto');
-                document.body.style.overflow = 'hidden';            };
+                document.body.style.overflow = 'hidden';
+            };
 
             const closeDrawer = () => {
-               menuContent.classList.add('translate-y-[-100%');
+                menuContent.classList.add('translate-y-[-100%]');
                 menuBackdrop.classList.remove('opacity-50', 'pointer-events-auto');
                 setTimeout(() => {
                     menuDrawer.classList.add('pointer-events-none');
@@ -1115,7 +1117,7 @@
             const toggleRTL = () => {
                 const current = localStorage.getItem('language') === 'ar' ? 'en' : 'ar';
                 localStorage.setItem('language', current);
-                document.do cumentElement.setAttribute('dir', current === 'ar' ? 'rtl' : 'ltr');
+                document.documentElement.setAttribute('dir', current === 'ar' ? 'rtl' : 'ltr');
             };
 
             document.getElementById('lang-icon')?.addEventListener('click', toggleRTL);
@@ -1126,20 +1128,27 @@
                 var pill = document.getElementById('auth-toggle');
                 if (!pill) return;
                 var loginTab = document.getElementById('auth-tab-login');
-                var signupTab = document.ge tElementById('auth-tab-signup');
+                var signupTab = document.getElementById('auth-tab-signup');
                 var page = window.location.pathname.split('/').pop() || '';
-                 function setActive(tab) {
+
+                function setActive(tab) {
                     if (tab === 'signup') {
                         pill.setAttribute('data-active', 'signup');
-                        loginTab.classList.remove('auth-toggle-tab--a ctive'); loginTab.setAttribute('aria-selected', 'false');
-                        signupTab.classList.add('auth-toggle- tab--active'); signupTab.setAttribute('aria-selected', 'true');
+                        loginTab.classList.remove('auth-toggle-tab--active');
+                        loginTab.setAttribute('aria-selected', 'false');
+                        signupTab.classList.add('auth-toggle-tab--active');
+                        signupTab.setAttribute('aria-selected', 'true');
                     } else {
-                                    pill.setAttribute(' data-a                e', 'login');
-                                    signupT                lassList.remove('aut                ggle-tab--active'); signupTab.setAttribute('aria-selected', 'false            ');            
-                        log inTab.                sList.add('auth-togg                ab--active'); loginTa                tAttribute('aria-sele                ', 'true');
+                        pill.setAttribute('data-active', 'login');
+                        signupTab.classList.remove('auth-toggle-tab--active');
+                        signupTab.setAttribute('aria-selected', 'false');
+                        loginTab.classList.add('auth-toggle-tab--active');
+                        loginTab.setAttribute('aria-selected', 'true');
                     }
                 }
-                            setActive(page === 'signtmlgnup' : 'login');
+
+                setActive(page === 'signup.html' ? 'signup' : 'login');
+
                 loginTab.onclick = function (e) {
                     e.preventDefault();
                     e.stopPropagation();
