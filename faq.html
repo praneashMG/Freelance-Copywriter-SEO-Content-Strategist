@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en" dir="ltr" data-theme="light">
 <head>
@@ -9,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <title>FAQ | WordCraft Project Inquiries</title>
 
-<script src="tailwind.js"></script>    <style>
+    <style>
   /* ================================
    🟣 PURPLE + SLATE DESIGN SYSTEM
 ================================ */
@@ -295,6 +294,38 @@ html[data-theme='dark'] {
         html[data-theme='dark'] .bg-white.shadow {
             background-color: var(--color-hover) !important;
         }
+
+        /* --- DARK MODE BUTTON CONTRAST FIX --- */
+        html[data-theme='dark'] .bg-\[var\(--color-primary-text\)\],
+        html[data-theme='dark'] .hover\:bg-\[var\(--color-primary-text\)\]:hover,
+        html[data-theme='dark'] .group:hover .group-hover\:bg-\[var\(--color-primary-text\)\] {
+            color: #0F172A !important; /* Dark slate text on light background */
+        }
+        
+        /* If the button specifically uses text-white but has a light primary-text background */
+        html[data-theme='dark'] .bg-\[var\(--color-primary-text\)\].text-white,
+        html[data-theme='dark'] .hover\:bg-\[var\(--color-primary-text\)\]:hover.hover\:text-white,
+        html[data-theme='dark'] .group:hover .group-hover\:bg-\[var\(--color-primary-text\)\].group-hover\:text-white {
+            color: #0F172A !important;
+        }
+
+        /* General fix for white text on light hover backgrounds */
+        html[data-theme='dark'] .hover\:text-white:hover {
+            color: #0F172A !important;
+        }
+        html[data-theme='dark'] .group:hover .group-hover\:text-white {
+            color: #0F172A !important;
+        }
+        /* Exceptions: keep white text on brand/accent backgrounds */
+        html[data-theme='dark'] .bg-\[var\(--color-accent-light\)\].text-white,
+        html[data-theme='dark'] .hover\:bg-\[var\(--color-accent-light\)\]:hover,
+        html[data-theme='dark'] .bg-purple-600.text-white {
+            color: #FFFFFF !important;
+        }
+        /* Hover visibility fix for secondary buttons in dark mode */
+        html[data-theme='dark'] .hover\:text-white:hover {
+            color: #0F172A !important; /* Dark text on light hover background */
+        }
         /* RTL FIX - ONLY DIRECTION */
 html[dir="rtl"] .auth-toggle-indicator {
     left: auto;
@@ -402,32 +433,32 @@ html[dir="rtl"] .auth-toggle-pill[data-active="signup"] .auth-toggle-indicator {
         </div>
         <div class="space-y-4">
             <!-- FAQ Item 1 -->
-            <div class="bg-[var(--color-background)] border border-[var(--color-border)] p-6 md:p-8 hover:border-[var(--color-accent-light)] transition-all cursor-pointer group">
+            <div class="faq-item bg-[var(--color-background)] border border-[var(--color-border)] p-6 md:p-8 hover:border-[var(--color-accent-light)] transition-all cursor-pointer group">
                 <div class="flex justify-between items-center">
                     <h5 class="font-bold text-[var(--color-primary-text)] uppercase tracking-tight text-sm">How do you handle revisions?</h5>
-                    <i class="fas fa-plus text-xs opacity-30 group-hover:opacity-100 transition-opacity"></i>
+                    <i class="faq-icon fas fa-plus text-xs opacity-30 group-hover:opacity-100 transition-opacity"></i>
                 </div>
-                <div class="mt-6 text-sm text-[var(--color-secondary-text)] leading-relaxed hidden group-hover:block border-t border-[var(--color-border)] pt-6">
+                <div class="faq-answer mt-6 text-sm text-[var(--color-secondary-text)] leading-relaxed hidden border-t border-[var(--color-border)] pt-6">
                     Every project includes two rounds of refinement. However, because our strategy is rooted in a clinical audit phase (pre-writing), most clients find that the first draft hits the mark immediately.
                 </div>
             </div>
             <!-- FAQ Item 2 -->
-            <div class="bg-[var(--color-background)] border border-[var(--color-border)] p-6 md:p-8 hover:border-[var(--color-accent-light)] transition-all cursor-pointer group">
+            <div class="faq-item bg-[var(--color-background)] border border-[var(--color-border)] p-6 md:p-8 hover:border-[var(--color-accent-light)] transition-all cursor-pointer group">
                 <div class="flex justify-between items-center">
                     <h5 class="font-bold text-[var(--color-primary-text)] uppercase tracking-tight text-sm">What is your typical lead time?</h5>
-                    <i class="fas fa-plus text-xs opacity-30 group-hover:opacity-100 transition-opacity"></i>
+                    <i class="faq-icon fas fa-plus text-xs opacity-30 group-hover:opacity-100 transition-opacity"></i>
                 </div>
-                <div class="mt-6 text-sm text-[var(--color-secondary-text)] leading-relaxed hidden group-hover:block border-t border-[var(--color-border)] pt-6">
+                <div class="faq-answer mt-6 text-sm text-[var(--color-secondary-text)] leading-relaxed hidden border-t border-[var(--color-border)] pt-6">
                     Strategic audits typically take 5-7 business days. Full content hub execution varies by scope, but we generally book projects 2-4 weeks in advance to ensure clinical precision.
                 </div>
             </div>
             <!-- FAQ Item 3 -->
-            <div class="bg-[var(--color-background)] border border-[var(--color-border)] p-6 md:p-8 hover:border-[var(--color-accent-light)] transition-all cursor-pointer group">
+            <div class="faq-item bg-[var(--color-background)] border border-[var(--color-border)] p-6 md:p-8 hover:border-[var(--color-accent-light)] transition-all cursor-pointer group">
                 <div class="flex justify-between items-center">
                     <h5 class="font-bold text-[var(--color-primary-text)] uppercase tracking-tight text-sm">Do you provide images or design?</h5>
-                    <i class="fas fa-plus text-xs opacity-30 group-hover:opacity-100 transition-opacity"></i>
+                    <i class="faq-icon fas fa-plus text-xs opacity-30 group-hover:opacity-100 transition-opacity"></i>
                 </div>
-                <div class="mt-6 text-sm text-[var(--color-secondary-text)] leading-relaxed hidden group-hover:block border-t border-[var(--color-border)] pt-6">
+                <div class="faq-answer mt-6 text-sm text-[var(--color-secondary-text)] leading-relaxed hidden border-t border-[var(--color-border)] pt-6">
                     Our focus is on narrative architecture and SEO. We provide wireframes for landing pages and alt-text strategy for images, but we partner with specialist designers for final visual execution.
                 </div>
             </div>
@@ -656,7 +687,7 @@ html[dir="rtl"] .auth-toggle-pill[data-active="signup"] .auth-toggle-indicator {
                     </div>
                 </div>
             </div>
-            <div class="py-10 text-center text-gray-500 text-sm">� 2026 WordCraft. All rights reserved.</div>
+            <div class="py-10 text-center text-gray-500 text-sm">© 2026 WordCraft. All rights reserved.</div>
         </div>
     </footer>
 
@@ -724,6 +755,16 @@ html[dir="rtl"] .auth-toggle-pill[data-active="signup"] .auth-toggle-indicator {
         };
 
         setupAccordion('mobile-homes-toggle', 'mobile-homes-menu', 'homes-icon');
+        
+        // --- FAQ Toggles ---
+        document.querySelectorAll('.faq-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const answer = item.querySelector('.faq-answer');
+                const icon = item.querySelector('.faq-icon');
+                answer.classList.toggle('hidden');
+                icon.classList.toggle('rotate-45'); // Optional: transform plus to an 'x' or similar
+            });
+        });
 
         // --- RTL Logic ---
         const toggleRTL = () => {

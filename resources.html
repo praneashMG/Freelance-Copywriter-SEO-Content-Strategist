@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr" data-theme="light">
+<!DOCTYPE html><html lang="en" dir="ltr" data-theme="light">
 
 <head>
     <meta charset="UTF-8">
@@ -9,7 +8,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <title>Resources | WordCraft Project Inquiries</title>
 
-    <script src="tailwind.js"></script>
     <style>
         /* ================================
    🟣 PURPLE + SLATE DESIGN SYSTEM
@@ -425,6 +423,34 @@
         /* Testimonial cards */
         html[data-theme='dark'] .bg-white.shadow {
             background-color: var(--color-hover) !important;
+        }
+
+        /* --- DARK MODE BUTTON CONTRAST FIX --- */
+        html[data-theme='dark'] .bg-\[var\(--color-primary-text\)\],
+        html[data-theme='dark'] .hover\:bg-\[var\(--color-primary-text\)\]:hover,
+        html[data-theme='dark'] .group:hover .group-hover\:bg-\[var\(--color-primary-text\)\] {
+            color: #0F172A !important; /* Dark slate text on light background */
+        }
+        
+        /* If the button specifically uses text-white but has a light primary-text background */
+        html[data-theme='dark'] .bg-\[var\(--color-primary-text\)\].text-white,
+        html[data-theme='dark'] .hover\:bg-\[var\(--color-primary-text\)\]:hover.hover\:text-white,
+        html[data-theme='dark'] .group:hover .group-hover\:bg-\[var\(--color-primary-text\)\].group-hover\:text-white {
+            color: #0F172A !important;
+        }
+
+        /* General fix for white text on light hover backgrounds */
+        html[data-theme='dark'] .hover\:text-white:hover {
+            color: #0F172A !important;
+        }
+        html[data-theme='dark'] .group:hover .group-hover\:text-white {
+            color: #0F172A !important;
+        }
+        /* Exceptions: keep white text on brand/accent backgrounds */
+        html[data-theme='dark'] .bg-\[var\(--color-accent-light\)\].text-white,
+        html[data-theme='dark'] .hover\:bg-\[var\(--color-accent-light\)\]:hover,
+        html[data-theme='dark'] .bg-purple-600.text-white {
+            color: #FFFFFF !important;
         }
 
         /* RTL FIX - ONLY DIRECTION */
@@ -1044,7 +1070,7 @@
                     </div>
                 </div>
             </div>
-            <div class="py-10 text-center text-gray-500 text-sm">© 2026 WordCraft. All rights reserved.</div>
+            <div class="py-10 text-center text-gray-500 text-sm">� 2026 WordCraft. All rights reserved.</div>
         </div>
     </footer>
 

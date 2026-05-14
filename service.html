@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" dir="ltr" data-theme="light">
 
 <head>
@@ -427,6 +427,34 @@
             background-color: var(--color-hover) !important;
         }
 
+        /* --- DARK MODE BUTTON CONTRAST FIX --- */
+        html[data-theme='dark'] .bg-\[var\(--color-primary-text\)\],
+        html[data-theme='dark'] .hover\:bg-\[var\(--color-primary-text\)\]:hover,
+        html[data-theme='dark'] .group:hover .group-hover\:bg-\[var\(--color-primary-text\)\] {
+            color: #0F172A !important; /* Dark slate text on light background */
+        }
+        
+        /* If the button specifically uses text-white but has a light primary-text background */
+        html[data-theme='dark'] .bg-\[var\(--color-primary-text\)\].text-white,
+        html[data-theme='dark'] .hover\:bg-\[var\(--color-primary-text\)\]:hover.hover\:text-white,
+        html[data-theme='dark'] .group:hover .group-hover\:bg-\[var\(--color-primary-text\)\].group-hover\:text-white {
+            color: #0F172A !important;
+        }
+
+        /* General fix for white text on light hover backgrounds */
+        html[data-theme='dark'] .hover\:text-white:hover {
+            color: #0F172A !important;
+        }
+        html[data-theme='dark'] .group:hover .group-hover\:text-white {
+            color: #0F172A !important;
+        }
+        /* Exceptions: keep white text on brand/accent backgrounds */
+        html[data-theme='dark'] .bg-\[var\(--color-accent-light\)\].text-white,
+        html[data-theme='dark'] .hover\:bg-\[var\(--color-accent-light\)\]:hover,
+        html[data-theme='dark'] .bg-purple-600.text-white {
+            color: #FFFFFF !important;
+        }
+
         /* RTL FIX - ONLY DIRECTION */
         html[dir="rtl"] .auth-toggle-indicator {
             left: auto;
@@ -531,14 +559,14 @@
         <!-- 1. PRESTIGE HERO -->
         <section class="relative py-24 md:py-32 bg-[var(--color-background)] border-b border-[var(--color-border)]">
             <div class="container mx-auto px-4 text-center">
-                  <div class="flex items-center justify-center space-x-3 mb-8">
-            <span class="h-px w-12 bg-[var(--color-accent-light)]"></span>
-            <span
+                <div class="flex items-center justify-center space-x-3 mb-8">
+                    <span class="h-px w-12 bg-[var(--color-accent-light)]"></span>
+                    <span
                         class="text-[var(--color-accent-light)] font-bold tracking-[0.4em] uppercase text-[10px]">Strategic
                         Excellence</span>
-            <span class="h-px w-12 bg-[var(--color-accent-light)]"></span>
-        </div>
-              
+                    <span class="h-px w-12 bg-[var(--color-accent-light)]"></span>
+                </div>
+
                 <h1
                     class="text-5xl md:text-7xl font-serif font-bold text-[var(--color-primary-text)] leading-tight mb-8">
                     Services Crafted for <br><span class="italic text-[var(--color-secondary-text)]">Impact.</span>
@@ -844,7 +872,8 @@
         <div id="drawer-content"
             class="absolute top-0 left-0 right-0 bg-background rounded-b-2xl shadow-2xl p-6 xl:hidden max-h-[85vh] overflow-y-auto transform translate-y-[-100%] transition-transform duration-300 ease-out">
             <div class="flex justify-between items-center pb-4 border-b border-border">
-                <a href="index.html" class="text-3xl font-serif font-extrabold tracking-tight text-accent-light">WordCraft</a>
+                <a href="index.html"
+                    class="text-3xl font-serif font-extrabold tracking-tight text-accent-light">WordCraft</a>
                 <button id="mobile-menu-close"
                     class="text-primary-text hover:text-accent-light p-1.5 rounded-full transition duration-200">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">

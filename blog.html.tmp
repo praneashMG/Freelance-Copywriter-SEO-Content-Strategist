@@ -7,7 +7,7 @@
     <link rel="icon" href="/assets/fav.png" type="image/jpeg">
       <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <title>Portfolio | WordCraft Copywriting & Content Success</title>
+    <title>Blog | WordCraft Copywriting Insights</title>
 
     <style>
   /* ================================
@@ -306,7 +306,7 @@ html[data-theme='dark'] {
         /* If the button specifically uses text-white but has a light primary-text background */
         html[data-theme='dark'] .bg-\[var\(--color-primary-text\)\].text-white,
         html[data-theme='dark'] .hover\:bg-\[var\(--color-primary-text\)\]:hover.hover\:text-white,
-        html[data-theme='dark'] .group:hover .group-hover\:text-white {
+        html[data-theme='dark'] .group:hover .group-hover\:bg-\[var\(--color-primary-text\)\].group-hover\:text-white {
             color: #0F172A !important;
         }
 
@@ -359,8 +359,8 @@ html[dir="rtl"] .auth-toggle-pill[data-active="signup"] .auth-toggle-indicator {
                         </div>
                     </div>
                     <a href="service.html" class="nav-link">Services</a>
-                    <a href="portfolio.html" class="nav-link active font-bold">Portfolio</a>
-                    <a href="blog.html" class="nav-link">Blog</a>
+                    <a href="portfolio.html" class="nav-link">Portfolio</a>
+                    <a href="blog.html" class="nav-link active font-bold">Blog</a>
                     <a href="about.html" class="nav-link">About</a>
                     <a href="contact.html" class="nav-link">Contact</a>
                     <a href="resources.html" class="nav-link">Resources</a>
@@ -401,270 +401,179 @@ html[dir="rtl"] .auth-toggle-pill[data-active="signup"] .auth-toggle-indicator {
             </div>
         </nav>
     </header>
-<main class="flex-grow">
-<!-- 1. PORTFOLIO HERO -->
-<section class="py-24 lg:py-32 bg-[var(--color-background)]">
-    <div class="container mx-auto px-4 text-center flex flex-col items-center">
-        <!-- Top Label -->
-        <div class="flex items-center justify-center space-x-3 mb-8">
-            <span class="h-px w-12 bg-[var(--color-accent-light)]"></span>
-            <span class="text-[var(--color-accent-light)] font-bold tracking-[0.3em] uppercase text-[10px]">
-                Work Showcase
-            </span>
-            <span class="h-px w-12 bg-[var(--color-accent-light)]"></span>
-        </div>
-
-        <!-- Heading -->
-        <h1 class="text-5xl md:text-7xl lg:text-8xl font-serif font-bold text-[var(--color-primary-text)] leading-tight mb-8 tracking-tighter max-w-4xl">
-            Strategic <br>
-            <span class="italic text-[var(--color-secondary-text)]">
-                Narratives.
-            </span>
-        </h1>
-
-        <!-- Paragraph -->
-        <p class="text-lg md:text-xl text-[var(--color-secondary-text)] leading-relaxed max-w-2xl">
-            A curated selection of high-impact copy and SEO strategies designed to amplify brand authority and drive measurable revenue growth.
-        </p>
-    </div>
-</section>
-
-<!-- 2. PROJECT CATEGORIES (PREMIUM GRID) -->
-<section class="py-24 bg-[var(--color-surface)] border-y border-[var(--color-border)]">
-    <div class="container mx-auto px-4">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Category 1 -->
-            <div class="p-10 border border-[var(--color-border)] hover:border-[var(--color-accent-light)] transition-all duration-500 bg-[var(--color-surface)] group flex flex-col h-full shadow-sm">
-                <div class="flex-grow">
-                    <span class="text-4xl font-serif italic text-[var(--color-accent-light)] opacity-30 mb-8 block">01</span>
-                <h3 class="text-2xl font-serif font-bold text-[var(--color-primary-text)] uppercase tracking-tight mb-4">E-commerce Sales</h3>
-                <p class="text-sm text-[var(--color-secondary-text)] leading-relaxed mb-6">
-                    High-converting product descriptions and direct-response landing pages that turn browsers into lifelong customers.
-                </p>
-                </div>
-                <div class="mt-auto pt-8">
-                    <div class="w-full h-px bg-[var(--color-border)] mb-6 group-hover:bg-[var(--color-accent-light)] transition-colors"></div>
-                <ul class="space-y-4 text-[10px] font-bold uppercase tracking-widest">
-                    <li><i class="fas fa-circle text-[var(--color-accent-light)] text-[6px] mr-3 rtl:ml-3"></i> Conversion Optimized</li>
-                    <li><i class="fas fa-circle text-[var(--color-accent-light)] text-[6px] mr-3 rtl:ml-3"></i> ROI Centric Design</li>
-                </ul>
-                </div>
-            </div>
-            <!-- Category 2 -->
-            <div class="p-10 bg-[var(--color-accent)] text-white shadow-2xl relative overflow-hidden flex flex-col h-full z-10">
-                <div class="absolute top-0 right-0 w-32 h-32 bg-white opacity-[0.03] rounded-full translate-x-1/2 -translate-y-1/2"></div>
-                <div class="flex-grow">
-                    <span class="text-4xl font-serif italic text-white opacity-30 mb-8 block">02</span>
-                <h3 class="text-2xl font-serif font-bold uppercase tracking-tight mb-4">SaaS & B2B Tech</h3>
-                <p class="text-sm opacity-80 leading-relaxed mb-6">
-                    Simplifying complex technical value propositions into compelling narratives that resonate with decision-makers.
-                </p>
-                </div>
-                <div class="mt-auto pt-8">
-                    <div class="w-full h-px bg-white/20 mb-6"></div>
-                <ul class="space-y-4 text-[10px] font-bold uppercase tracking-widest text-white">
-                    <li><i class="fas fa-circle text-white/40 text-[6px] mr-3 rtl:ml-3"></i> Whitepapers & Case Studies</li>
-                    <li><i class="fas fa-circle text-white/40 text-[6px] mr-3 rtl:ml-3"></i> Authority Building Hubs</li>
-                </ul>
-                </div>
-            </div>
-            <!-- Category 3 -->
-            <div class="p-10 border border-[var(--color-border)] hover:border-[var(--color-accent-light)] transition-all duration-500 bg-[var(--color-surface)] group flex flex-col h-full shadow-sm">
-                <div class="flex-grow">
-                    <span class="text-4xl font-serif italic text-[var(--color-accent-light)] opacity-30 mb-8 block">03</span>
-                <h3 class="text-2xl font-serif font-bold text-[var(--color-primary-text)] uppercase tracking-tight mb-4">SEO Content</h3>
-                <p class="text-sm text-[var(--color-secondary-text)] leading-relaxed mb-6">
-                    Semantic-rich, long-form content engineered to dominate search rankings and capture high-intent organic traffic.
-                </p>
-                </div>
-                <div class="mt-auto pt-8">
-                    <div class="w-full h-px bg-[var(--color-border)] mb-6 group-hover:bg-[var(--color-accent-light)] transition-colors"></div>
-                <ul class="space-y-4 text-[10px] font-bold uppercase tracking-widest">
-                    <li><i class="fas fa-circle text-[var(--color-accent-light)] text-[6px] mr-3 rtl:ml-3"></i> Semantic Dominance</li>
-                    <li><i class="fas fa-circle text-[var(--color-accent-light)] text-[6px] mr-3 rtl:ml-3"></i> Link-Worthy Assets</li>
-                </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- 3. CREATIVE PHILOSOPHY (MODERN RESPONSIVE VERSION) -->
-<section class="py-16 md:py-24 bg-[var(--color-background)] overflow-hidden">
-  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-    
-    <div class="grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
-      
-      <!-- IMAGE -->
-      <div class="relative w-full">
-        <div class="relative group">
-          
-          <!-- Background Border Effect -->
-          <div class="absolute inset-0 rounded-3xl bg-[var(--color-surface)] translate-x-4 translate-y-4 md:translate-x-6 md:translate-y-6 -z-10"></div>
-
-          <!-- Main Image -->
-          <img 
-            src="/assets/d1.jpg" 
-            alt="Strategy Process"
-            class="w-full h-[320px] sm:h-[420px] lg:h-[520px] object-cover rounded-3xl shadow-2xl grayscale group-hover:grayscale-0 transition duration-500"
-          />
-
-          <!-- Floating Badge -->
-          <div class="absolute bottom-5 left-5 bg-black/70 backdrop-blur-md px-5 py-3 rounded-2xl border border-white/10">
-            <p class="text-white text-sm uppercase tracking-[3px] font-semibold">
-              Revenue Driven Strategy
-            </p>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- CONTENT -->
-      <div class="text-left rtl:text-right">
+    <main class="flex-grow">
+<!-- 1. INSIGHTS HERO -->
+<section class="py-20 lg:py-32 bg-[var(--color-background)] border-b border-[var(--color-border)]">
+    <div class="container mx-auto px-4 flex justify-center">
         
-        <!-- Small Label -->
-        <span class="inline-block text-xs uppercase tracking-[4px] text-[var(--color-accent-light)] font-semibold mb-5">
-          Creative Philosophy
-        </span>
-
-        <!-- Heading -->
-        <h2 class="text-3xl sm:text-4xl lg:text-5xl leading-tight font-serif font-bold text-[var(--color-primary-text)] mb-8">
-          A Legacy of
-          <span class="italic text-[var(--color-accent-light)]">
-            Revenue-First Copy.
-          </span>
-        </h2>
-
-        <!-- Description -->
-        <p class="text-base sm:text-lg text-[var(--color-secondary-text)] leading-relaxed mb-10 max-w-2xl">
-          I don’t just write words — I build strategic messaging systems that connect products with people through psychology, storytelling, and precision SEO.
-        </p>
-
-        <!-- PHASES -->
-        <div class="space-y-5">
-
-          <!-- Item -->
-          <div class="group flex items-center justify-between gap-4 border border-[var(--color-border)] rounded-2xl px-5 py-5 hover:border-[var(--color-accent-light)] transition duration-300">
-            <div>
-              <h4 class="text-xs uppercase tracking-[3px] font-bold text-[var(--color-primary-text)] group-hover:text-[var(--color-accent-light)] transition">
-                Phase I: Audit
-              </h4>
+        <div class="max-w-4xl text-center flex flex-col items-center">
+            
+            <!-- Top Label -->
+            <div class="flex items-center justify-center space-x-3 mb-8">
+                <span class="h-px w-12 bg-[var(--color-accent-light)]"></span>
+                <span class="text-[var(--color-accent-light)] font-bold tracking-[0.4em] uppercase text-[10px]">
+                    The Insight Archive
+                </span>
+                <span class="h-px w-12 bg-[var(--color-accent-light)]"></span>
             </div>
 
-            <span class="text-sm sm:text-base italic font-serif text-[var(--color-accent-light)]">
-              Competitive Intelligence
-            </span>
-          </div>
+            <!-- Heading -->
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-serif font-bold text-[var(--color-primary-text)] leading-tight mb-8 tracking-tighter">
+                Narrative <br>
+                & <span class="italic text-[var(--color-secondary-text)]">Intelligence.</span>
+            </h1>
 
-          <!-- Item -->
-          <div class="group flex items-center justify-between gap-4 border border-[var(--color-border)] rounded-2xl px-5 py-5 hover:border-[var(--color-accent-light)] transition duration-300">
-            <div>
-              <h4 class="text-xs uppercase tracking-[3px] font-bold text-[var(--color-primary-text)] group-hover:text-[var(--color-accent-light)] transition">
-                Phase II: Execution
-              </h4>
-            </div>
-
-            <span class="text-sm sm:text-base italic font-serif text-[var(--color-accent-light)]">
-              Narrative Architecture
-            </span>
-          </div>
-
-          <!-- Item -->
-          <div class="group flex items-center justify-between gap-4 border border-[var(--color-border)] rounded-2xl px-5 py-5 hover:border-[var(--color-accent-light)] transition duration-300">
-            <div>
-              <h4 class="text-xs uppercase tracking-[3px] font-bold text-[var(--color-primary-text)] group-hover:text-[var(--color-accent-light)] transition">
-                Phase III: Scale
-              </h4>
-            </div>
-
-            <span class="text-sm sm:text-base italic font-serif text-[var(--color-accent-light)]">
-              Performance Optimization
-            </span>
-          </div>
+            <!-- Description -->
+            <p class="text-lg md:text-xl text-[var(--color-secondary-text)] leading-relaxed max-w-2xl">
+                Exploring the intersection of behavioral psychology, semantic SEO, and high-conversion storytelling. Strategies for brands that demand authority.
+            </p>
 
         </div>
 
-      </div>
     </div>
-  </div>
 </section>
 
-<!-- 4. WORKFLOW PROTOCOL (PROFESSIONAL TIMELINE) -->
+<!-- 2. EDITORIAL BENTO GRID -->
+<section class="py-24 bg-[var(--color-surface)]">
+    <div class="container mx-auto px-4">
+        <div class="mb-16">
+            <h2 class="text-3xl font-serif font-bold text-[var(--color-primary-text)] uppercase tracking-tight">Recent Insights</h2>
+            <div class="h-1 w-20 bg-[var(--color-accent-light)] mt-4"></div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 h-auto md:h-[800px]">
+            <!-- Featured Article -->
+            <div class="md:col-span-2 md:row-span-2 relative overflow-hidden border border-[var(--color-border)] group bg-[var(--color-background)]">
+                <img src="/assets/r1.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000" alt="Strategy Board">
+                <div class="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black/80 to-transparent text-white">
+                    <h4 class="text-2xl font-serif font-bold leading-tight">Semantic Dominance: Moving Beyond Keyword Density</h4>
+                </div>
+            </div>
+            <!-- Secondary Article -->
+            <div class="md:col-span-2 relative overflow-hidden border border-[var(--color-border)] group bg-[var(--color-background)]">
+                <img src="/assets/r2.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000" alt="Conference Room">
+                <div class="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black/80 to-transparent text-white">
+                    <h4 class="text-xl font-serif font-bold leading-tight">The Psychology of the Call-to-Action</h4>
+                </div>
+            </div>
+            <!-- Smaller Grid Items -->
+            <div class="relative overflow-hidden border border-[var(--color-border)] group bg-[var(--color-background)]">
+                <img src="/assets/r3.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000" alt="Team Work">
+                <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-all flex items-center justify-center p-4 text-center">
+                    <p class="text-white text-[10px] font-bold uppercase tracking-[0.2em]">B2B Case Study</p>
+                </div>
+            </div>
+            <div class="relative overflow-hidden border border-[var(--color-border)] group bg-[var(--color-background)]">
+                <img src="/assets/r4.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000" alt="Consultation">
+                <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-all flex items-center justify-center p-4 text-center">
+                    <p class="text-white text-[10px] font-bold uppercase tracking-[0.2em]">Brand Voice Guide</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 3. STRATEGIC RIGOR (VERTICAL STAGGERED) -->
+<section class="py-24 bg-[var(--color-background)]">
+    <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+            <div class="space-y-12">
+                <div class="border-l-4 border-[var(--color-accent-light)] pl-8 rtl:pl-0 rtl:pr-8 rtl:border-l-0 rtl:border-r-4">
+                    <h3 class="text-4xl font-serif font-bold text-[var(--color-primary-text)] mb-6">Behavioral <br><span class="italic">Analysis.</span></h3>
+                    <p class="text-[var(--color-secondary-text)] leading-relaxed">I utilize deep semantic analysis and heat-mapping data to move beyond surface-level writing. Every word is chosen based on empirical audience data and intent mapping.</p>
+                </div>
+                <div class="relative group h-80 overflow-hidden border border-[var(--color-border)]">
+                    <img src="/assets/r6.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" alt="Data Analysis">
+                </div>
+            </div>
+            <div class="lg:pt-32">
+                <div class="relative group h-[500px] overflow-hidden border border-[var(--color-border)]">
+                    <img src="/assets/r7.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" alt="Content Architecture">
+                    <div class="absolute inset-0 border-[20px] border-[var(--color-surface)] m-6 pointer-events-none opacity-20"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 4. PERFORMANCE CHRONICLE -->
 <section class="py-24 bg-[var(--color-elevated)] border-y border-[var(--color-border)]">
-    <div class="container mx-auto px-4 max-w-5xl">
-        <div class="text-center mb-20">
-            <h2 class="text-4xl font-serif font-bold text-[var(--color-primary-text)] mb-4 uppercase tracking-tight">Collaboration Protocol</h2>
-            <p class="text-[10px] font-bold text-[var(--color-accent-light)] uppercase tracking-[0.4em]">Structured for Maximum ROI</p>
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-serif font-bold text-[var(--color-primary-text)] mb-4">Milestones</h2>
+            <p class="text-[10px] font-bold text-[var(--color-accent-light)] uppercase tracking-[0.4em]">Proven Revenue Impact</p>
         </div>
-        <div class="relative space-y-12">
-            <div class="absolute left-[20px] md:left-1/2 top-0 bottom-0 w-px bg-[var(--color-border)] -translate-x-1/2 hidden md:block"></div>
-            
-            <!-- Step 1 -->
-            <div class="relative flex flex-col md:flex-row items-center md:justify-between group">
-                <div class="md:w-[45%] text-left md:text-right rtl:md:text-left mb-4 md:md:mb-0">
-                    <h4 class="text-xl font-bold text-[var(--color-primary-text)] uppercase tracking-tight">Stage I: Discovery</h4>
-                    <p class="text-sm text-[var(--color-secondary-text)]">Deep-dive into your market position, persona mapping, and search landscape.</p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Milestone 1 -->
+            <div class="bg-[var(--color-surface)] border border-[var(--color-border)] p-1 group hover:border-[var(--color-accent-light)] transition-all">
+                <div class="h-64 overflow-hidden mb-8">
+                    <img src="/assets/r8.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" alt="Analytics">
                 </div>
-                <div class="absolute left-[20px] md:left-1/2 w-10 h-10 rounded-full bg-[var(--color-surface)] border-4 border-[var(--color-accent-light)] -translate-x-1/2 z-10 hidden md:flex items-center justify-center font-bold text-[10px] shadow-sm">01</div>
-                <div class="md:w-[45%]"></div>
-            </div>
-
-            <!-- Step 2 -->
-            <div class="relative flex flex-col md:flex-row items-center md:justify-between group">
-                <div class="md:w-[45%]"></div>
-                <div class="absolute left-[20px] md:left-1/2 w-10 h-10 rounded-full bg-[var(--color-surface)] border-4 border-[var(--color-accent-light)] -translate-x-1/2 z-10 hidden md:flex items-center justify-center font-bold text-[10px] shadow-sm">02</div>
-                <div class="md:w-[45%] text-left">
-                    <h4 class="text-xl font-bold text-[var(--color-primary-text)] uppercase tracking-tight">Stage II: Architecture</h4>
-                    <p class="text-sm text-[var(--color-secondary-text)]">Crafting the narrative framework and SEO keyword clusters for long-term growth.</p>
+                <div class="px-6 pb-8">
+                    <h5 class="font-bold text-[var(--color-primary-text)] uppercase tracking-tight mb-2">SaaS Authority Hub</h5>
+                    <p class="text-xs text-[var(--color-secondary-text)]">Built a 50-article content pillar resulting in a 45% organic lead lift.</p>
                 </div>
             </div>
-
-            <!-- Step 3 -->
-            <div class="relative flex flex-col md:flex-row items-center md:justify-between group">
-                <div class="md:w-[45%] text-left md:text-right rtl:md:text-left">
-                    <h4 class="text-xl font-bold text-[var(--color-primary-text)] uppercase tracking-tight">Stage III: Refinement</h4>
-                    <p class="text-sm text-[var(--color-secondary-text)]">Iterative editing and A/B testing to ensure maximum conversion potential.</p>
+            <!-- Milestone 2 -->
+            <div class="bg-[var(--color-surface)] border border-[var(--color-border)] p-1 group hover:border-[var(--color-accent-light)] transition-all">
+                <div class="h-64 overflow-hidden mb-8">
+                    <img src="/assets/r9.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" alt="E-commerce Success">
                 </div>
-                <div class="absolute left-[20px] md:left-1/2 w-10 h-10 rounded-full bg-[var(--color-surface)] border-4 border-[var(--color-accent-light)] -translate-x-1/2 z-10 hidden md:flex items-center justify-center font-bold text-[10px] shadow-sm">03</div>
-                <div class="md:w-[45%]"></div>
+                <div class="px-6 pb-8">
+                    <h5 class="font-bold text-[var(--color-primary-text)] uppercase tracking-tight mb-2">E-com Revenue Scale</h5>
+                    <p class="text-xs text-[var(--color-secondary-text)]">Re-architected product descriptions for a $5M lifestyle brand.</p>
+                </div>
+            </div>
+            <!-- Milestone 3 -->
+            <div class="bg-[var(--color-surface)] border border-[var(--color-border)] p-1 group hover:border-[var(--color-accent-light)] transition-all">
+                <div class="h-64 overflow-hidden mb-8">
+                    <img src="/assets/r10.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" alt="Technical Blog">
+                </div>
+                <div class="px-6 pb-8">
+                    <h5 class="font-bold text-[var(--color-primary-text)] uppercase tracking-tight mb-2">Technical SEO Audit</h5>
+                    <p class="text-xs text-[var(--color-secondary-text)]">Semantic optimization for a global FinTech knowledge base.</p>
+                </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- 5. PERFORMANCE METRICS (DATA GRID) -->
-<section class="py-24 bg-[var(--color-background)]">
+<!-- 5. EDITORIAL DATA -->
+<section class="py-16 bg-[var(--color-background)]">
     <div class="container mx-auto px-4">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div class="p-10 bg-[var(--color-surface)] border border-[var(--color-border)] text-center group hover:border-[var(--color-accent-light)] transition-all">
-                <p class="text-5xl font-serif font-bold text-[var(--color-primary-text)] mb-2">45%</p>
-                <p class="text-[10px] font-bold text-[var(--color-secondary-text)] uppercase tracking-widest group-hover:text-[var(--color-accent-light)] transition-colors">Avg. Conversion Lift</p>
+        <div class="flex flex-wrap justify-center md:justify-around gap-12 text-center opacity-80">
+            <div>
+                <p class="text-4xl font-serif font-bold text-[var(--color-primary-text)]">150+</p>
+                <p class="text-[10px] font-bold uppercase tracking-widest text-[var(--color-secondary-text)] mt-1">Niches Analyzed</p>
             </div>
-            <div class="p-10 bg-[var(--color-surface)] border border-[var(--color-border)] text-center group hover:border-[var(--color-accent-light)] transition-all">
-                <p class="text-5xl font-serif font-bold text-[var(--color-primary-text)] mb-2">120k</p>
-                <p class="text-[10px] font-bold text-[var(--color-secondary-text)] uppercase tracking-widest group-hover:text-[var(--color-accent-light)] transition-colors">Organic Leads Driven</p>
+            <div class="hidden md:block h-10 w-px bg-[var(--color-border)]"></div>
+            <div>
+                <p class="text-4xl font-serif font-bold text-[var(--color-primary-text)]">10M+</p>
+                <p class="text-[10px] font-bold uppercase tracking-widest text-[var(--color-secondary-text)] mt-1">Impressions Driven</p>
             </div>
-            <div class="p-10 bg-[var(--color-surface)] border border-[var(--color-border)] text-center group hover:border-[var(--color-accent-light)] transition-all">
-                <p class="text-5xl font-serif font-bold text-[var(--color-primary-text)] mb-2">Top 3</p>
-                <p class="text-[10px] font-bold text-[var(--color-secondary-text)] uppercase tracking-widest group-hover:text-[var(--color-accent-light)] transition-colors">SERP Ranking Dominance</p>
+            <div class="hidden md:block h-10 w-px bg-[var(--color-border)]"></div>
+            <div>
+                <p class="text-4xl font-serif font-bold text-[var(--color-primary-text)]">200%</p>
+                <p class="text-[10px] font-bold uppercase tracking-widest text-[var(--color-secondary-text)] mt-1">Avg. Traffic Growth</p>
             </div>
-            <div class="p-10 bg-[var(--color-surface)] border border-[var(--color-border)] text-center group hover:border-[var(--color-accent-light)] transition-all">
-                <p class="text-5xl font-serif font-bold text-[var(--color-primary-text)] mb-2">$5M+</p>
-                <p class="text-[10px] font-bold text-[var(--color-secondary-text)] uppercase tracking-widest group-hover:text-[var(--color-accent-light)] transition-colors">Client Revenue Boost</p>
+            <div class="hidden md:block h-10 w-px bg-[var(--color-border)]"></div>
+            <div>
+                <p class="text-4xl font-serif font-bold text-[var(--color-primary-text)]">Top 3</p>
+                <p class="text-[10px] font-bold uppercase tracking-widest text-[var(--color-secondary-text)] mt-1">SERP Ranking Goal</p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- 6. FINAL PARTNERSHIP CTA -->
+<!-- 6. FINAL INSIGHTS CTA -->
 <section class="py-24 bg-[var(--color-background)]">
     <div class="container mx-auto px-4">
-        <div class="bg-[var(--color-surface)] p-16 md:p-24 text-center border border-[var(--color-border)] shadow-2xl relative overflow-hidden">
+        <div class="bg-[var(--color-surface)] border border-[var(--color-border)] p-12 md:p-24 text-center relative overflow-hidden">
             <div class="absolute top-0 right-0 w-64 h-64 bg-[var(--color-accent-light)] opacity-[0.03] rounded-full translate-x-1/2 -translate-y-1/2"></div>
-            
-            <h3 class="text-4xl md:text-5xl font-serif font-bold text-[var(--color-primary-text)] mb-8 tracking-tight">Secure Your Brand's <br>Narrative <span class="italic text-[var(--color-secondary-text)]">Dominance.</span></h3>
-            <div class="flex flex-col sm:flex-row justify-center gap-6 mt-12">
-                <a href="contact.html" class="px-12 py-5 bg-[var(--color-accent)] text-white font-bold uppercase tracking-widest text-[10px] hover:bg-[var(--color-accent-light)] transition-all duration-500 shadow-lg">Request Portfolio Audit</a>
-                <a href="booking.html" class="px-12 py-5 border border-[var(--color-primary-text)] text-[var(--color-primary-text)] font-bold uppercase tracking-widest text-[10px] hover:bg-[var(--color-primary-text)] hover:text-white transition-all duration-500 shadow-sm">Schedule Strategy Call</a>
+            <h3 class="text-4xl font-serif font-bold text-[var(--color-primary-text)] mb-8">Secure Your <br><span class="italic text-[var(--color-secondary-text)]">Semantic Authority.</span></h3>
+            <p class="text-sm text-[var(--color-secondary-text)] mb-10 max-w-xl mx-auto uppercase tracking-widest font-bold">Content strategy audits available for quarterly intake.</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-6">
+                <a href="contact.html" class="px-12 py-5 bg-[var(--color-accent)] text-white font-bold uppercase tracking-widest text-xs hover:bg-[var(--color-accent-light)] transition-all">Request Audit</a>
+                <a href="portfolio.html" class="px-12 py-5 border border-[var(--color-primary-text)] text-[var(--color-primary-text)] font-bold uppercase tracking-widest text-xs hover:bg-[var(--color-primary-text)] hover:text-white transition-all">View Showcase</a>
             </div>
         </div>
     </div>
@@ -693,8 +602,8 @@ html[dir="rtl"] .auth-toggle-pill[data-active="signup"] .auth-toggle-indicator {
                 </div>
 
                 <a href="service.html" class="block text-primary-text font-semibold text-lg hover:text-accent-light transition duration-200 py-2">Services</a>
-                <a href="portfolio.html" class="block text-accent-light font-bold text-lg hover:text-accent-light transition duration-200 py-2">Portfolio</a>
-                <a href="blog.html" class="block text-primary-text font-semibold text-lg hover:text-accent-light transition duration-200 py-2">Blog</a>
+                <a href="portfolio.html" class="block text-primary-text font-semibold text-lg hover:text-accent-light transition duration-200 py-2">Portfolio</a>
+                <a href="blog.html" class="block text-accent-light font-bold text-lg hover:text-accent-light transition duration-200 py-2">Blog</a>
                 <a href="about.html" class="block text-primary-text font-semibold text-lg hover:text-accent-light transition duration-200 py-2">About</a>
                 <a href="contact.html" class="block text-primary-text font-semibold text-lg hover:text-accent-light transition duration-200 py-2">Contact</a>
                 <a href="resources.html" class="block text-primary-text font-semibold text-lg hover:text-accent-light transition duration-200 py-2">Resources</a>
@@ -771,7 +680,6 @@ html[dir="rtl"] .auth-toggle-pill[data-active="signup"] .auth-toggle-indicator {
                     </div>
                 </div>
             </div>
-            <div class="py-10 text-center text-gray-500 text-sm">© 2026 WordCraft. All rights reserved.</div>
         </div>
     </footer>
 

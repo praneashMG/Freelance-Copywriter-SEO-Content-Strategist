@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en" dir="ltr" data-theme="light">
 <head>
@@ -9,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <title>Case Study | WordCraft Project Inquiries</title>
 
-<script src="tailwind.js"></script>    <style>
+    <style>
   /* ================================
    🟣 PURPLE + SLATE DESIGN SYSTEM
 ================================ */
@@ -263,6 +262,16 @@ html[data-theme='dark'] {
         html[data-theme='dark'] .text-gray-400 {
             color: var(--color-secondary-text) !important;
         }
+        /* Mock Search Result Overrides */
+        html[data-theme='dark'] .text-\[\#202124\] {
+            color: var(--color-primary-text) !important;
+        }
+        html[data-theme='dark'] .text-\[\#1a0dab\] {
+            color: #8B5CF6 !important; /* Brighter purple for dark mode link */
+        }
+        html[data-theme='dark'] .text-\[\#4d5156\] {
+            color: var(--color-secondary-text) !important;
+        }
         html[data-theme='dark'] .border-gray-100,
         html[data-theme='dark'] .border-gray-200 {
             border-color: var(--color-border) !important;
@@ -273,6 +282,10 @@ html[data-theme='dark'] {
         html[data-theme='dark'] .bg-white.p-8,
         html[data-theme='dark'] .bg-white.p-10 {
             background-color: var(--color-hover) !important;
+        }
+        /* Hover visibility fix for secondary buttons in dark mode */
+        html[data-theme='dark'] .hover\:text-white:hover {
+            color: #0F172A !important; /* Dark text on light hover background */
         }
         /* Icon circles */
         html[data-theme='dark'] .bg-\[\#F1F5F2\].rounded-full {
@@ -548,7 +561,7 @@ html[dir="rtl"] .auth-toggle-pill[data-active="signup"] .auth-toggle-indicator {
             <p class="text-[var(--color-secondary-text)] mb-12 leading-relaxed max-w-lg mx-auto">I only take on 3 major strategic audits per quarter to ensure clinical precision. Secure your spot in the next Q3 intake.</p>
             <div class="flex flex-col sm:flex-row justify-center gap-6">
                 <a href="contact.html" class="px-10 py-5 bg-[var(--color-accent)] text-white font-bold uppercase tracking-widest text-[10px] hover:bg-[var(--color-accent-light)] transition-all">Submit Intake Form</a>
-                <a href="resource.html" class="px-10 py-5 border border-[var(--color-primary-text)] text-[var(--color-primary-text)] font-bold uppercase tracking-widest text-[10px] hover:bg-[var(--color-primary-text)] hover:text-white transition-all">Download Audit Checklist</a>
+                <a href="resources.html" class="px-10 py-5 border border-[var(--color-primary-text)] text-[var(--color-primary-text)] font-bold uppercase tracking-widest text-[10px] hover:bg-[var(--color-primary-text)] hover:text-white transition-all">Download Audit Checklist</a>
             </div>
             <p class="mt-12 text-[9px] font-bold text-red-500 uppercase tracking-[0.3em]">Current Status: 1 Slot Remaining</p>
         </div>
@@ -660,7 +673,7 @@ html[dir="rtl"] .auth-toggle-pill[data-active="signup"] .auth-toggle-indicator {
                     </div>
                 </div>
             </div>
-            <div class="py-10 text-center text-gray-500 text-sm">� 2026 WordCraft. All rights reserved.</div>
+            <div class="py-10 text-center text-gray-500 text-sm">© 2026 WordCraft. All rights reserved.</div>
         </div>
     </footer>
 
@@ -775,10 +788,3 @@ signupTab.onclick = function(e) {
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
