@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="/assets/fav.jpg" type="image/jpeg">
+    <link rel="icon" href="/assets/fav.png" type="image/jpeg">
       <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <title>Contact | WordCraft Project Inquiries</title>
@@ -513,33 +513,90 @@ html[dir="rtl"] .auth-toggle-pill[data-active="signup"] .auth-toggle-indicator {
         </div>
     </div>
 </section>
-
 <!-- 4. FREQUENT INQUIRIES (FAQ) -->
 <section class="py-24 bg-[var(--color-elevated)]">
     <div class="container mx-auto px-4 max-w-4xl">
-        <h2 class="text-3xl font-serif font-bold text-[var(--color-primary-text)] mb-12 text-center uppercase tracking-tight">Strategy FAQ</h2>
+        
+        <h2 class="text-3xl font-serif font-bold text-[var(--color-primary-text)] mb-12 text-center uppercase tracking-tight">
+            Strategy FAQ
+        </h2>
+
         <div class="space-y-6">
-            <div class="bg-[var(--color-surface)] border border-[var(--color-border)] p-8 hover:border-[var(--color-accent-light)] transition-all cursor-pointer group">
-                <div class="flex justify-between items-center">
-                    <h5 class="font-bold text-[var(--color-primary-text)] uppercase tracking-tight text-sm">What is your typical project lead time?</h5>
-                    <i class="fas fa-plus text-xs opacity-30 group-hover:opacity-100 transition-opacity"></i>
+
+            <!-- FAQ ITEM -->
+            <div class="faq-item bg-[var(--color-surface)] border border-[var(--color-border)] p-8 hover:border-[var(--color-accent-light)] transition-all cursor-pointer group">
+
+                <div class="faq-question flex justify-between items-center">
+                    <h5 class="font-bold text-[var(--color-primary-text)] uppercase tracking-tight text-sm">
+                        What is your typical project lead time?
+                    </h5>
+
+                    <i class="faq-icon fas fa-plus text-xs opacity-30 group-hover:opacity-100 transition-all"></i>
+                </div>
+
+                <div class="faq-answer hidden mt-6 text-[var(--color-secondary-text)] leading-relaxed">
+                    Most projects begin within 3–7 business days depending on scope, research requirements, and content strategy planning.
                 </div>
             </div>
-            <div class="bg-[var(--color-surface)] border border-[var(--color-border)] p-8 hover:border-[var(--color-accent-light)] transition-all cursor-pointer group">
-                <div class="flex justify-between items-center">
-                    <h5 class="font-bold text-[var(--color-primary-text)] uppercase tracking-tight text-sm">Do you offer complimentary SEO audits?</h5>
-                    <i class="fas fa-plus text-xs opacity-30 group-hover:opacity-100 transition-opacity"></i>
+
+            <!-- FAQ ITEM -->
+            <div class="faq-item bg-[var(--color-surface)] border border-[var(--color-border)] p-8 hover:border-[var(--color-accent-light)] transition-all cursor-pointer group">
+
+                <div class="faq-question flex justify-between items-center">
+                    <h5 class="font-bold text-[var(--color-primary-text)] uppercase tracking-tight text-sm">
+                        Do you offer complimentary SEO audits?
+                    </h5>
+
+                    <i class="faq-icon fas fa-plus text-xs opacity-30 group-hover:opacity-100 transition-all"></i>
+                </div>
+
+                <div class="faq-answer hidden mt-6 text-[var(--color-secondary-text)] leading-relaxed">
+                    Yes. A basic SEO content audit is included to identify keyword opportunities, content gaps, and optimization improvements.
                 </div>
             </div>
-            <div class="bg-[var(--color-surface)] border border-[var(--color-border)] p-8 hover:border-[var(--color-accent-light)] transition-all cursor-pointer group">
-                <div class="flex justify-between items-center">
-                    <h5 class="font-bold text-[var(--color-primary-text)] uppercase tracking-tight text-sm">How do you manage the revision process?</h5>
-                    <i class="fas fa-plus text-xs opacity-30 group-hover:opacity-100 transition-opacity"></i>
+
+            <!-- FAQ ITEM -->
+            <div class="faq-item bg-[var(--color-surface)] border border-[var(--color-border)] p-8 hover:border-[var(--color-accent-light)] transition-all cursor-pointer group">
+
+                <div class="faq-question flex justify-between items-center">
+                    <h5 class="font-bold text-[var(--color-primary-text)] uppercase tracking-tight text-sm">
+                        How do you manage the revision process?
+                    </h5>
+
+                    <i class="faq-icon fas fa-plus text-xs opacity-30 group-hover:opacity-100 transition-all"></i>
+                </div>
+
+                <div class="faq-answer hidden mt-6 text-[var(--color-secondary-text)] leading-relaxed">
+                    Revisions are handled collaboratively with clear feedback rounds to ensure the final content aligns with your brand voice and SEO goals.
                 </div>
             </div>
+
         </div>
     </div>
 </section>
+
+<!-- FAQ SCRIPT -->
+<script>
+    const faqItems = document.querySelectorAll(".faq-item");
+
+    faqItems.forEach(item => {
+        item.addEventListener("click", () => {
+
+            const answer = item.querySelector(".faq-answer");
+            const icon = item.querySelector(".faq-icon");
+
+            answer.classList.toggle("hidden");
+
+            if (answer.classList.contains("hidden")) {
+                icon.classList.remove("fa-minus");
+                icon.classList.add("fa-plus");
+            } else {
+                icon.classList.remove("fa-plus");
+                icon.classList.add("fa-minus");
+            }
+        });
+    });
+</script>
 
 <!-- 5. PERFORMANCE REACH (STATS) -->
 <section class="py-16 bg-[var(--color-background)] border-y border-[var(--color-border)]">
