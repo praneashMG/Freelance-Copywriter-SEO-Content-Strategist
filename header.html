@@ -1,5 +1,4 @@
-﻿
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" dir="ltr" data-theme="light">
 <head>
     <meta charset="UTF-8">
@@ -9,7 +8,6 @@
 <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <title>WordCraft | Coaching Institute Website </title>
-
 <script src="tailwind.js"></script>    <style>
         /* --- CSS Variables for Forest & Amber Palette --- */
         :root, html[data-theme='light'] {
@@ -34,7 +32,6 @@
             --color-footer-bg: #000000;
             --color-footer-text: #FFFFFF;
         }
-        
         body {
             background-color: var(--color-background);
             color: var(--color-primary-text);
@@ -42,7 +39,6 @@
             transition: background-color 0.3s, color 0.3s;
             overflow-x: hidden;
         }
-        
         /* Utility Class Aliases */
         .text-primary-text { color: var(--color-primary-text); }
         .text-secondary-text { color: var(--color-secondary-text); }
@@ -51,7 +47,6 @@
         .bg-background { background-color: var(--color-background); }
         .bg-hover { background-color: var(--color-hover); }
         .border-border { border-color: var(--color-border); }
-
         /* Updated Gradients */
         .bg-ocean-gradient {
             background: linear-gradient(135deg, #1F3D2B 0%, #2D5A3F 100%);
@@ -59,7 +54,6 @@
         .bg-coral-gradient {
             background: linear-gradient(135deg, #E6B325 0%, #F4D06F 100%);
         }
-
         /* Footer Specific Overrides */
         #main-footer {
             background-color: var(--color-footer-bg);
@@ -72,7 +66,6 @@
             color: var(--color-accent-light);
             padding-inline-start: 4px;
         }
-
         /* Nav Link Underline Animation */
         .nav-link {
             position: relative;
@@ -95,7 +88,6 @@
         .nav-link.active, .nav-link:hover {
             color: var(--color-accent-light) !important;
         }
-
         /* DROPDOWN Logic */
         .dropdown-wrapper { position: relative; }
         .dropdown-wrapper::before {
@@ -140,25 +132,21 @@
             color: var(--color-accent-light);
             padding-left: 1.25rem;
         }
-
         /* Dynamic Booking Button - Updated to Forest/Amber */
         .book-btn {
             background-color: var(--color-accent); 
             color: white;
             transition: all 0.3s ease;
         }
-
         html[data-theme='dark'] .book-btn {
             background-color: var(--color-accent-light); 
             color: #000;
         }
-
         .book-btn:hover {
             opacity: 0.9;
             transform: translateY(-1px);
             box-shadow: 0 4px 12px rgba(31, 61, 43, 0.3);
         }
-
         /* ===== AUTH TOGGLE SWITCH (Desktop Only) ===== */
         .auth-toggle-wrap { display: none; }
         @media (min-width: 1280px) { .auth-toggle-wrap { display: flex; align-items: center; } }
@@ -198,12 +186,10 @@
         .auth-toggle-tab:not(.auth-toggle-tab--active):hover { color: var(--color-accent); }
         html[data-theme='dark'] .auth-toggle-tab:not(.auth-toggle-tab--active):hover { color: var(--color-accent-light); }
         .auth-toggle-tab:focus-visible { outline: 2px solid var(--color-accent-light); outline-offset: 2px; border-radius: 9999px; }
-
         @media (max-width: 1024px) {
             .dropdown-menu { position: static; display: none; opacity: 1; visibility: visible; transform: none; box-shadow: none; }
             .dropdown-wrapper:hover .dropdown-menu { display: block; }
         }
-
         /* ===== DARK MODE OVERRIDES FOR HARDCODED COLORS ===== */
         html[data-theme='dark'] .bg-white,
         html[data-theme='dark'] section.bg-white,
@@ -269,18 +255,15 @@ html[dir="rtl"] .auth-toggle-indicator {
     left: auto;
     right: 4px;
 }
-
 html[dir="rtl"] .auth-toggle-pill[data-active="signup"] .auth-toggle-indicator {
     transform: translateX(-100%);
 }
     </style>
 </head>
 <body class="antialiased flex flex-col min-h-screen">
-
     <header class="sticky top-0 z-50 transition-colors duration-300 shadow-xl border-b border-border bg-background" id="main-header">
         <nav class="container mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between h-[70px]">
             <a href="index.html" class="text-3xl font-serif font-extrabold tracking-tight text-accent-light">WordCraft</a>
-
             <div class="hidden xl:flex items-center space-x-6">
                 <div class="flex space-x-6 rtl:space-x-reverse rtl:ml-6 text-primary-text font-medium">
                     <div class="dropdown-wrapper">
@@ -293,15 +276,14 @@ html[dir="rtl"] .auth-toggle-pill[data-active="signup"] .auth-toggle-indicator {
                             <a href="home2.html">Home 2</a>
                         </div>
                     </div>
-                                        <a href="service.html" class="nav-link">Service</a>
-                    <a href="portfolio.html" class="block text-primary-text font-semibold text-lg hover:text-accent-light transition duration-200 py-2">Portfolio</a>
-                    <a href="blog.html" class="block text-primary-text font-semibold text-lg hover:text-accent-light transition duration-200 py-2">Blog</a>
+                                        <a href="service.html" class="nav-link">My Services</a>
+                    <a href="portfolio.html" class="block text-primary-text font-semibold text-lg hover:text-accent-light transition duration-200 py-2">My Work</a>
+                <a href="process.html" class="block text-primary-text font-semibold text-lg hover:text-accent-light transition duration-200 py-2">The Process</a>
+                    <a href="process.html" class="nav-link">The Process</a>
                     <a href="about.html" class="nav-link">About</a>
                     <a href="contact.html" class="nav-link">Contact</a>
                 </div>
-
                 <div class="w-px h-6 bg-border mx-3"></div>
-                
                 <div class="flex items-center space-x-4 rtl:space-x-reverse rtl:mr-4">
                     <button id="theme-toggle" class="icon-btn text-primary-text hover:text-accent-light p-1.5 rounded-full transition duration-200">
                         <svg class="w-6 h-6 light-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
@@ -322,7 +304,6 @@ html[dir="rtl"] .auth-toggle-pill[data-active="signup"] .auth-toggle-indicator {
                     </div>
                 </div>
             </div>
-
             <div class="xl:hidden flex items-center space-x-4">
                 <button id="mobile-menu-open" class="icon-btn text-primary-text hover:text-accent-light p-1.5 rounded-full transition duration-200"><svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg></button>
             </div>
@@ -332,7 +313,6 @@ html[dir="rtl"] .auth-toggle-pill[data-active="signup"] .auth-toggle-indicator {
 </main>
     <div id="mobile-menu-drawer" class="fixed inset-0 z-50 pointer-events-none transition-all duration-300">
         <div id="drawer-backdrop" class="absolute inset-0 bg-black opacity-0 transition-opacity duration-300 pointer-events-none"></div>
-
         <div id="drawer-content" class="absolute top-0 left-0 right-0 bg-background rounded-b-2xl shadow-2xl p-6 xl:hidden max-h-[85vh] overflow-y-auto transform translate-y-[-100%] transition-transform duration-300 ease-out">
             <div class="flex justify-between items-center pb-4 border-b border-border">
                 <a href="index.html" class="text-3xl font-serif font-extrabold tracking-tight text-accent-light">WordCraft</a>
@@ -340,32 +320,30 @@ html[dir="rtl"] .auth-toggle-pill[data-active="signup"] .auth-toggle-indicator {
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                 </button>
             </div>
-
             <nav class="flex flex-col space-y-2 py-4">
-                <div>
-                    <button class="block text-primary-text font-semibold text-lg py-2 w-full text-left flex justify-between items-center" id="mobile-homes-toggle">
-                        Home <svg class="w-4 h-4 transform transition-transform duration-200 text-primary-text" id="homes-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                    </button>
-                    <div id="mobile-homes-menu" class="hidden pl-4 flex flex-col space-y-1 mt-1 border-l-2 border-border rtl:pl-0 rtl:pr-4 rtl:border-l-0 rtl:border-r-2">
-                        <a href="index.html" class="block text-secondary-text hover:text-accent-light transition duration-200 text-base py-1 px-2">Home 1</a>
-                        <a href="home2.html" class="block text-secondary-text hover:text-accent-light transition duration-200 text-base py-1 px-2">Home 2</a>
-                    </div>
-                </div>
-
-                <a href="service.html" class="block text-primary-text font-semibold text-lg hover:text-accent-light transition duration-200 py-2">Services</a>
-                <a href="portfolio.html" class="block text-primary-text font-semibold text-lg hover:text-accent-light transition duration-200 py-2">Portfolio</a>
-                <a href="blog.html" class="block text-primary-text font-semibold text-lg hover:text-accent-light transition duration-200 py-2">Blog</a>
-                <a href="about.html" class="block text-primary-text font-semibold text-lg hover:text-accent-light transition duration-200 py-2">About</a>
-                <a href="contact.html" class="block text-primary-text font-semibold text-lg hover:text-accent-light transition duration-200 py-2">Contact</a>
-            </nav>
-
+                  <div>
+                      <button class="block text-accent-light font-bold text-lg py-2 w-full text-left flex justify-between items-center" id="mobile-homes-toggle">
+                          Home <svg class="w-4 h-4 transform transition-transform duration-200 text-primary-text" id="homes-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                      </button>
+                      <div id="mobile-homes-menu" class="hidden pl-4 flex flex-col space-y-1 mt-1 border-l-2 border-border rtl:pl-0 rtl:pr-4 rtl:border-l-0 rtl:border-r-2">
+                          <a href="index.html" class="block text-accent hover:text-accent-light transition duration-200 text-base py-1 px-2">Home 1</a>
+                          <a href="home2.html" class="block text-secondary-text hover:text-accent-light transition duration-200 text-base py-1 px-2">Home 2</a>
+                      </div>
+                  </div>
+                  <a href="service.html" class="block text-primary-text font-semibold text-lg hover:text-accent-light transition duration-200 py-2">Expertise</a>
+                  <a href="portfolio.html" class="block text-primary-text font-semibold text-lg hover:text-accent-light transition duration-200 py-2">Work</a>
+                  <a href="process.html" class="block text-primary-text font-semibold text-lg hover:text-accent-light transition duration-200 py-2">Process</a>
+                  <a href="about.html" class="block text-primary-text font-semibold text-lg hover:text-accent-light transition duration-200 py-2">About</a>
+                  <a href="blog.html" class="block text-primary-text font-semibold text-lg hover:text-accent-light transition duration-200 py-2">Insights</a>
+                  <a href="casestudy.html" class="block text-primary-text font-semibold text-lg hover:text-accent-light transition duration-200 py-2">Success</a>
+                  <a href="contact.html" class="block text-primary-text font-semibold text-lg hover:text-accent-light transition duration-200 py-2">Contact</a>
+              </nav>
             <div class="pt-4 border-t border-border mt-4 flex justify-around items-center">
                 <button id="mobile-lang-icon-drawer" class="icon-btn flex flex-col items-center text-primary-text hover:text-accent-light p-2 transition duration-200">
 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
 </svg>                    <span class="text-xs mt-1 text-secondary-text">RTL</span>
                 </button>
-              
                 <button id="drawer-theme-toggle" class="icon-btn flex flex-col items-center text-primary-text hover:text-accent-light p-2 transition duration-200">
                     <svg class="w-6 h-6 light-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
                     <svg class="w-6 h-6 dark-icon hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
@@ -378,7 +356,6 @@ html[dir="rtl"] .auth-toggle-pill[data-active="signup"] .auth-toggle-indicator {
             </div>
         </div>
     </div>
-
     <footer id="main-footer" class="pt-20 transition-colors duration-300">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-5 gap-12 pb-16 border-b border-gray-800">
@@ -404,12 +381,15 @@ Strategic content and SEO solutions designed to build brand authority and drive 
                 </div>
                 <div>
                     <h4 class="footer-heading font-bold text-xl mb-6">Quick Links</h4>
-                    <ul class="space-y-4">
-                        <li><a href="service.html" class="block text-primary-text font-semibold text-lg hover:text-accent-light transition duration-200 py-2">Services</a></li>
-                        <li><a href="portfolio.html" class="block text-primary-text font-semibold text-lg hover:text-accent-light transition duration-200 py-2">Portfolio</a></li>
-                        <li><a href="blog.html" class="block text-primary-text font-semibold text-lg hover:text-accent-light transition duration-200 py-2">Blog</a></li>
-                        <li><a href="contact.html" class="footer-link">Contact</a></li>
-                    </ul>
+                                          <ul class="space-y-4">
+                          <li><a href="service.html" class="footer-link">Expertise</a></li>
+                          <li><a href="portfolio.html" class="footer-link">Work</a></li>
+                          <li><a href="process.html" class="footer-link">Process</a></li>
+                          <li><a href="about.html" class="footer-link">About</a></li>
+                          <li><a href="blog.html" class="footer-link">Insights</a></li>
+                          <li><a href="casestudy.html" class="footer-link">Success</a></li>
+                          <li><a href="contact.html" class="footer-link">Contact</a></li>
+                      </ul>
                 </div>
                 <div>
                     <h4 class="footer-heading font-bold text-xl mb-6">Newsletter</h4>
@@ -424,48 +404,39 @@ Strategic content and SEO solutions designed to build brand authority and drive 
             <div class="py-10 text-center text-gray-500 text-sm">© 2026 WordCraft. All rights reserved.</div>
         </div>
     </footer>
-
     <script>
     document.addEventListener('DOMContentLoaded', () => {
         const html = document.documentElement;
-
         // Load saved settings
         const savedLang = localStorage.getItem('language') || 'en';
         document.documentElement.setAttribute('dir', savedLang === 'ar' ? 'rtl' : 'ltr');
-
         const savedTheme = localStorage.getItem('theme') || 'light';
         applyTheme(savedTheme);
-
         // --- Theme Logic ---
         const themeToggles = [
             document.getElementById('theme-toggle'),
             document.getElementById('drawer-theme-toggle')
         ].filter(Boolean);
-        
         function applyTheme(theme) {
             html.setAttribute('data-theme', theme);
             document.querySelectorAll('.light-icon').forEach(i => i.classList.toggle('hidden', theme === 'dark'));
             document.querySelectorAll('.dark-icon').forEach(i => i.classList.toggle('hidden', theme === 'light'));
         }
-
         themeToggles.forEach(btn => btn.addEventListener('click', () => {
             const next = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
             localStorage.setItem('theme', next);
             applyTheme(next);
         }));
-
         // --- Mobile Drawer Logic ---
         const menuDrawer = document.getElementById('mobile-menu-drawer');
         const menuContent = document.getElementById('drawer-content');
         const menuBackdrop = document.getElementById('drawer-backdrop');
-
         const openDrawer = () => {
             menuDrawer.classList.remove('pointer-events-none');
             menuContent.classList.remove('translate-y-[-100%]');
             menuBackdrop.classList.add('opacity-50', 'pointer-events-auto');
             document.body.style.overflow = 'hidden';
         };
-
         const closeDrawer = () => {
             menuContent.classList.add('translate-y-[-100%]');
             menuBackdrop.classList.remove('opacity-50', 'pointer-events-auto');
@@ -474,11 +445,9 @@ Strategic content and SEO solutions designed to build brand authority and drive 
                 document.body.style.overflow = ''; 
             }, 300);
         };
-
         document.getElementById('mobile-menu-open')?.addEventListener('click', openDrawer);
         document.getElementById('mobile-menu-close')?.addEventListener('click', closeDrawer);
         menuBackdrop?.addEventListener('click', closeDrawer);
-
         // --- Accordions ---
         const setupAccordion = (toggleId, menuId, iconId) => {
             const toggle = document.getElementById(toggleId);
@@ -487,19 +456,15 @@ Strategic content and SEO solutions designed to build brand authority and drive 
                 document.getElementById(iconId)?.classList.toggle('rotate-180');
             });
         };
-
         setupAccordion('mobile-homes-toggle', 'mobile-homes-menu', 'homes-icon');
-
         // --- RTL Logic ---
         const toggleRTL = () => {
             const current = localStorage.getItem('language') === 'ar' ? 'en' : 'ar';
             localStorage.setItem('language', current);
             document.documentElement.setAttribute('dir', current === 'ar' ? 'rtl' : 'ltr');
         };
-
         document.getElementById('lang-icon')?.addEventListener('click', toggleRTL);
         document.getElementById('mobile-lang-icon-drawer')?.addEventListener('click', toggleRTL);
-
         // ===== AUTH TOGGLE LOGIC =====
         (function() {
             var pill = document.getElementById('auth-toggle');
@@ -536,7 +501,6 @@ signupTab.onclick = function(e) {
     </script>
 </body>
 </html>
-
 
 
 
