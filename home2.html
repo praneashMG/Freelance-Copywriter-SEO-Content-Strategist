@@ -205,99 +205,6 @@
             transform: translateY(-1px);
             box-shadow: 0 4px 12px rgba(31, 61, 43, 0.3);
         }
-        /* ===== AUTH TOGGLE SWITCH (Desktop Only) ===== */
-        .auth-toggle-wrap {
-            display: none;
-        }
-        @media (min-width: 1280px) {
-            .auth-toggle-wrap {
-                display: flex;
-                align-items: center;
-            }
-        }
-        .auth-toggle-pill {
-            position: relative;
-            display: inline-flex;
-            align-items: center;
-            background-color: var(--color-hover);
-            border: 1px solid var(--color-border);
-            border-radius: 9999px;
-            padding: 4px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-            overflow: hidden;
-        }
-        html[data-theme='dark'] .auth-toggle-pill {
-            background-color: #1B2E23;
-            border-color: #2D5A3F;
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
-        }
-        .auth-toggle-indicator {
-            position: absolute;
-            top: 4px;
-            bottom: 4px;
-            left: 4px;
-            width: calc(50% - 4px);
-            background-color: var(--color-accent);
-            border-radius: 9999px;
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 0;
-            box-shadow: 0 2px 8px rgba(31, 61, 43, 0.25);
-        }
-        html[data-theme='dark'] .auth-toggle-indicator {
-            background-color: var(--color-accent-light);
-            box-shadow: 0 2px 8px rgba(230, 179, 37, 0.3);
-        }
-        .auth-toggle-pill[data-active="signup"] .auth-toggle-indicator {
-            transform: translateX(calc(100%));
-        }
-        .auth-toggle-tab {
-            position: relative;
-            z-index: 1;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0.45rem 1.2rem;
-            border-radius: 9999px;
-            font-weight: 700;
-            font-size: 0.875rem;
-            color: var(--color-secondary-text);
-            text-decoration: none;
-            transition: color 0.25s ease;
-            white-space: nowrap;
-            min-width: 72px;
-            text-align: center;
-            user-select: none;
-        }
-        .auth-toggle-tab--active {
-            color: #ffffff;
-        }
-        html[data-theme='dark'] .auth-toggle-tab--active {
-            color: #000000;
-        }
-        .auth-toggle-tab:not(.auth-toggle-tab--active):hover {
-            color: var(--color-accent);
-        }
-        html[data-theme='dark'] .auth-toggle-tab:not(.auth-toggle-tab--active):hover {
-            color: var(--color-accent-light);
-        }
-        .auth-toggle-tab:focus-visible {
-            outline: 2px solid var(--color-accent-light);
-            outline-offset: 2px;
-            border-radius: 9999px;
-        }
-        @media (max-width: 1024px) {
-            .dropdown-menu {
-                position: static;
-                display: none;
-                opacity: 1;
-                visibility: visible;
-                transform: none;
-                box-shadow: none;
-            }
-            .dropdown-wrapper:hover .dropdown-menu {
-                display: block;
-            }
-        }
         /* ===== DARK MODE OVERRIDES FOR HARDCODED COLORS ===== */
         html[data-theme='dark'] .bg-white,
         html[data-theme='dark'] section.bg-white,
@@ -395,7 +302,7 @@
 </head>
 <body class="antialiased flex flex-col min-h-screen">
     <header class="fixed top-0 left-0 right-0 z-50 shadow-xl border-b border-border bg-background" id="main-header">
-        <nav class="container mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center h-[70px]">
+        <nav class="container mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between h-[70px]">
             <!-- Brand (Left) -->
             <div class="flex-shrink-0">
                 <a href="index.html" class="text-3xl font-serif font-extrabold tracking-tight text-accent-light">
@@ -448,19 +355,11 @@
                                 d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
                         </svg>
                     </button>
-                    <div class="auth-toggle-wrap" role="tablist" aria-label="Authentication options">
-                        <div class="auth-toggle-pill" id="auth-toggle">
-                            <span class="auth-toggle-indicator" id="auth-toggle-indicator" aria-hidden="true"></span>
-                            <a href="login.html" role="tab" id="auth-tab-login"
-                                class="auth-toggle-tab auth-toggle-tab--active" aria-selected="true">Login</a>
-                            <a href="signup.html" role="tab" id="auth-tab-signup" class="auth-toggle-tab"
-                                aria-selected="false">Sign Up</a>
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
             <!-- Mobile Menu Toggle (Always Right) -->
-            <div class="xl:hidden ml-auto flex items-center space-x-4">
+            <div class="xl:hidden flex items-center space-x-4">
                 <button id="mobile-menu-open"
                     class="icon-btn text-primary-text hover:text-accent-light p-1.5 rounded-full transition duration-200">
                     <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -891,12 +790,7 @@
                     <span class="text-xs mt-1 text-secondary-text">Theme</span>
                 </button>
             </div>
-            <div class="flex mt-5 gap-5 w-full px-2">
-                <a href="login.html"
-                    class="flex-1 book-btn text-center py-2 rounded-xl font-bold text-sm shadow-md">Login</a>
-                <a href="signup.html"
-                    class="flex-1 book-btn text-center py-2 rounded-xl font-bold text-sm shadow-md">Sign Up</a>
-            </div>
+            
         </div>
     </div>
     <footer id="main-footer" class="pt-20 transition-colors duration-300">
@@ -1016,47 +910,7 @@
             };
             document.getElementById('lang-icon')?.addEventListener('click', toggleRTL);
             document.getElementById('mobile-lang-icon-drawer')?.addEventListener('click', toggleRTL);
-            // ===== AUTH TOGGLE LOGIC =====
-            (function () {
-                var pill = document.getElementById('auth-toggle');
-                if (!pill) return;
-                var loginTab = document.getElementById('auth-tab-login');
-                var signupTab = document.getElementById('auth-tab-signup');
-                var page = window.location.pathname.split('/').pop() || '';
-                function setActive(tab) {
-                    if (tab === 'signup') {
-                        pill.setAttribute('data-active', 'signup');
-                        loginTab.classList.remove('auth-toggle-tab--active'); loginTab.setAttribute('aria-selected', 'false');
-                        signupTab.classList.add('auth-toggle-tab--active'); signupTab.setAttribute('aria-selected', 'true');
-                    } else {
-                        pill.setAttribute('data-active', 'login');
-                        signupTab.classList.remove('auth-toggle-tab--active'); signupTab.setAttribute('aria-selected', 'false');
-                        loginTab.classList.add('auth-toggle-tab--active'); loginTab.setAttribute('aria-selected', 'true');
-                    }
-                }
-                setActive(page === 'signup.html' ? 'signup' : 'login');
-                loginTab.onclick = function (e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    setActive('login');
-                    setTimeout(() => { window.location.assign('login.html'); }, 300);
-                };
-                signupTab.onclick = function (e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    setActive('signup');
-                    setTimeout(() => { window.location.assign('signup.html'); }, 700);
-                };
-            })();
-        });
+    });
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
